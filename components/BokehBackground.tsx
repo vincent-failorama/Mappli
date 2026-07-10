@@ -1,19 +1,16 @@
 'use client';
 
-import { useCallback } from 'react';
-import Particles from '@tsparticles/react';
+import Particles, { ParticlesProvider, useParticlesProvider } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
-import type { Engine } from '@tsparticles/engine';
 
-export default function BokehBackground() {
-  const init = useCallback(async (engine: Engine) => {
-    await loadSlim(engine);
-  }, []);
+function BokehParticles() {
+  const { loaded } = useParticlesProvider();
+
+  if (!loaded) return null;
 
   return (
     <Particles
       id="bokeh"
-      init={init}
       style={{ position: 'fixed', inset: 0, zIndex: 0 }}
       options={{
         background: { color: { value: 'transparent' } },
@@ -47,5 +44,17 @@ export default function BokehBackground() {
         detectRetina: true,
       }}
     />
+  );
+}
+
+export default function BokehBackground() {
+  return (
+    <ParticlesProvider
+      init={async (engine) => {
+        await loadSlim(engine);
+      }}
+    >
+      <BokehParticles />
+    </ParticlesProvider>
   );
 }
