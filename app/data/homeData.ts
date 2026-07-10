@@ -1,7 +1,16 @@
 // Import icons from react-icons/fa
-import { FaBuilding, FaFutbol, FaAmbulance, FaHeartbeat, FaMobileAlt, FaCloud, FaBullseye } from 'react-icons/fa';
+import { FaBuilding, FaFutbol, FaAmbulance, FaHeartbeat, FaKey, FaMobileAlt, FaCloud, FaBullseye } from 'react-icons/fa';
 
 export const APPS = [
+  {
+    icon: FaKey, // Icône de clé pour la gestion locative
+    name: 'Gestion locative — bail & EDL',
+    tagline: 'Propriétaires bailleurs indépendants',
+    description:
+      'Application mobile de gestion locative : baux conformes (Loi 89, meublé, mobilité), états des lieux, quittances, suivi des loyers, fiscalité et espace locataire. 1er bail offert.',
+    platforms: ['Android', 'iOS bientôt'],
+    href: '/apps/gestion-locative',
+  },
   {
     icon: FaBuilding, // Icône de bâtiment pour Signalis
     name: 'Signalis',
