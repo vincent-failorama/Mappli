@@ -1,0 +1,10 @@
+# Les binaires ne doivent jamais subir la conversion de fins de ligne :
+# avec core.autocrlf=true, un checkout Windows réécrirait des octets LF en CRLF
+# à l'intérieur du fichier et le rendrait illisible (PDF corrompu, image cassée).
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
