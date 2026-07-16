@@ -25,7 +25,7 @@ const FEATURES = [
     icon: FaUsers, // Icône de groupe d'utilisateurs
     title: 'Gestion du personnel',
     description:
-      'Gestion complète des agents, avec attribution des grades (Sapeur à Commandant) et de plus de 23 types de qualifications (CA_TE, COD3, SUAP, INC, etc.).',
+      'Gestion complète des agents, avec attribution des grades (Sapeur à Commandant) et de 21 qualifications (CA_TE, COD3, SUAP, INC, etc.). Indisponibilités datées et gardes de référence pour les arrivées en cours d\'année.',
   },
   {
     icon: FaAmbulance, // Icône d'ambulance
@@ -55,7 +55,7 @@ const FEATURES = [
     icon: FaLock, // Icône de cadenas
     title: '100% Local & Sécurisé',
     description:
-      "Fonctionnement sans serveur. Données stockées localement sur l'appareil. Possibilité de synchronisation via Google Drive sur la version bureau.",
+      "Fonctionnement sans serveur, sans compte et hors-ligne. Données stockées localement sur l'appareil. La version bureau peut partager ses données entre postes via un fichier déposé dans un dossier synchronisé (Drive, OneDrive…).",
   },
 ];
 
@@ -87,7 +87,7 @@ export default function PompiersPlanificateurPage() {
               l'équité pour vous faire gagner un temps précieux à chaque prise de garde.
             </p>
             <div className="flex gap-3 flex-wrap mb-6">
-              {['Windows', 'Web'].map((p) => (
+              {['Windows', 'Android', 'Web'].map((p) => (
                 <span
                   key={p}
                   className="bg-slate-100 text-slate-700 text-sm font-semibold px-3 py-1.5 rounded-full"
@@ -138,6 +138,10 @@ export default function PompiersPlanificateurPage() {
               Le logiciel en action
             </span>
             <h2 className="text-3xl font-bold text-white">5 phases, un planning prêt à imprimer</h2>
+            <p className="text-slate-400 mt-3">
+              Deux écrans complètent le parcours : l&apos;Historique, qui montre la répartition des
+              gardes par agent sur 16 semaines, et les Paramètres.
+            </p>
           </div>
           <div className="space-y-6">
             {[
@@ -202,17 +206,24 @@ export default function PompiersPlanificateurPage() {
                   CA_TE) couvre automatiquement les besoins inférieurs (ex: CA_VSAV).
                 </li>
                 <li>
-                  <strong>Exclusivité VSAV :</strong> Un agent affecté au VSAV est bloqué sur cet
-                  engin et ne peut être double-armé sur le même créneau.
+                  <strong>Exclusivité VSAV :</strong> Un agent affecté au VSAV 1 est bloqué sur cet
+                  engin et ne peut être double-armé sur le même créneau. Les VSAV supplémentaires
+                  (VSAV 2, 3…) restent cumulables avec un autre engin, mais jamais entre eux.
                 </li>
                 <li>
                   <strong>Multi-armement :</strong> Possibilité d'affecter un même agent sur
-                  plusieurs engins secondaires (FPT + VTU).
+                  plusieurs engins secondaires (FPT + VTU) : il part avec celui qui sort.
                 </li>
                 <li>
-                  <strong>Privilège des grades :</strong> Les grades inférieurs (Sapeur, Caporal)
-                  sont placés en priorité sur les postes d'équipier pour laisser les Sous-Officiers
-                  disponibles pour les postes à responsabilités.
+                  <strong>Privilège des grades :</strong> Sur le poste d'équipier VSAV, les Sapeurs
+                  et Caporaux passent en priorité, pour laisser les Sous-Officiers disponibles sur
+                  les postes à responsabilités.
+                </li>
+                <li>
+                  <strong>Équité sur 16 semaines :</strong> À qualification égale, l'algorithme fait
+                  d'abord tourner les rôles et les engins ; le nombre total de gardes n'intervient
+                  qu'en dernier recours. À données identiques, le planning généré est toujours le
+                  même.
                 </li>
               </ul>
             </div>
@@ -276,7 +287,7 @@ export default function PompiersPlanificateurPage() {
               description:
                 'Application de génération de planning de garde pour centres de secours. Moteur algorithmique, gestion des qualifications et exports PDF.',
               applicationCategory: 'BusinessApplication',
-              operatingSystem: 'Windows, Web',
+              operatingSystem: 'Windows, Android, Web',
               url: 'https://mappli.fr/apps/pompiers-planificateur',
               author: { '@type': 'Organization', name: 'MAPPLI', url: 'https://mappli.fr' },
             },
