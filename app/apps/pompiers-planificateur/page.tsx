@@ -103,6 +103,15 @@ export default function PompiersPlanificateurPage() {
               >
                 Demander une démo →
               </a>
+              <a
+                href="/guide-planning-gardes-sp.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/15 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+              >
+                <FaFilePdf aria-hidden="true" />
+                Guide utilisateur (PDF)
+              </a>
             </div>
           </div>
 
