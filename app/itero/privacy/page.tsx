@@ -6,6 +6,8 @@ import type { Metadata } from 'next';
  * fichier — la fiche Play Store exige une URL publique, l'écran in-app ne suffit
  * pas. Toute modification doit être faite D'ABORD dans l'app, puis reportée ici :
  * deux versions divergentes seraient pires que pas de page du tout.
+ *
+ * NE PAS ÉDITER À LA MAIN — régénérer avec `pnpm legal:web` depuis Itero.ai.
  */
 export const metadata: Metadata = {
   title: 'Politique de confidentialité — Itero.ai',
