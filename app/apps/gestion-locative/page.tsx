@@ -188,10 +188,6 @@ export default function GestionLocativePage() {
             </div>
           ))}
         </div>
-        <p className="text-center text-slate-400 text-sm mt-4">
-          Remplacez les placeholders par vos captures dans{' '}
-          <code>public/apps/gestion-locative/</code>
-        </p>
       </section>
 
       {/* Tarifs */}
