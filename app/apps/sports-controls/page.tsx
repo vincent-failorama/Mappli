@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import FeatureGrid from '../../../components/FeatureGrid';
+import LegalLinks from '../../../components/LegalLinks';
 import { FaFutbol, FaSearch, FaFilePdf, FaExclamationTriangle, FaGlobe, FaBell, FaUsers } from 'react-icons/fa';
 
 export const metadata = {
@@ -247,6 +248,25 @@ export default function SportsControlsPage() {
           </p>
         </div>
       </section>
+
+      <LegalLinks
+        app="sports-controls"
+        descriptions={{
+          mentions:
+            "Éditeur, hébergement des données (Firebase, serveurs en Europe), portée des contrôles réalisés via l'application, propriété intellectuelle.",
+          privacy:
+            "Données de compte et d'inspection, usage de l'appareil photo et de la galerie, stockage, partage, conservation et droits RGPD.",
+          terms:
+            "Ce que l'outil atteste (et ce qu'il n'atteste pas), comptes rattachés à une organisation, contenus publiés, disponibilité et responsabilité.",
+        }}
+        note={
+          <>
+            Aucun paiement n&apos;est traité par l&apos;application : les modalités d&apos;accès sont
+            convenues directement avec l&apos;éditeur, et des conditions générales de vente
+            distinctes seront publiées avant toute facturation.
+          </>
+        }
+      />
 
       {/* CTA final */}
       <section className="max-w-3xl mx-auto px-6 py-20 text-center">

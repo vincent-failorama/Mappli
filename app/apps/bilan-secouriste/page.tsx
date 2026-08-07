@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import FeatureGrid from '../../../components/FeatureGrid';
 import LightboxImage from '../../../components/LightboxImage';
+import LegalLinks from '../../../components/LegalLinks';
 import { FaHeartbeat, FaBolt, FaUsers, FaFilePdf, FaLock, FaBook } from 'react-icons/fa';
 
 export const metadata = {
@@ -105,12 +106,12 @@ export default function BilanSecouristePage() {
               >
                 Nous contacter →
               </a>
-              <Link
-                href="/bilan-secouriste/privacy"
+              <a
+                href="#legal"
                 className="border border-white/20 text-slate-300 px-6 py-3 rounded-xl font-semibold hover:border-white/40 transition-colors text-sm flex items-center"
               >
-                Politique de confidentialité
-              </Link>
+                Informations légales
+              </a>
             </div>
           </div>
 
@@ -266,6 +267,24 @@ export default function BilanSecouristePage() {
           </div>
         </div>
       </section>
+
+      <LegalLinks
+        app="bilan-secouriste"
+        descriptions={{
+          mentions:
+            "Éditeur, hébergement (aucun serveur : tout reste sur l'appareil), avertissement sur les protocoles et les bases médicales, propriété intellectuelle.",
+          privacy:
+            "Aucune donnée collectée, aucune transmission, aucun traceur. Permissions Android utilisées et responsabilité de l'utilisateur sur les données de santé.",
+          terms:
+            "Portée de l'outil (aide opérationnelle, pas un dispositif médical), perte des données en cas de désinstallation, usage autorisé, responsabilité.",
+        }}
+        note={
+          <>
+            L&apos;application est gratuite et ne propose aucun achat intégré. Les mêmes mentions
+            sont consultables dans l&apos;application, écran «&nbsp;Mentions légales&nbsp;».
+          </>
+        }
+      />
 
       {/* CTA final */}
       <section className="max-w-3xl mx-auto px-6 py-20 text-center">

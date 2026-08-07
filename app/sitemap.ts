@@ -88,5 +88,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.2,
     },
+    // Mentions légales + CGU des apps distribuées sur les stores (hors Signalis et
+    // Planificateur de Garde, qui n'y sont pas publiés).
+    ...[
+      '/bilan-secouriste/mentions-legales',
+      '/bilan-secouriste/cgu',
+      '/gestion-locative/mentions-legales',
+      '/gestion-locative/cgu',
+      '/sports-controls/mentions-legales',
+      '/sports-controls/cgu',
+    ].map((path) => ({
+      url: `${BASE_URL}${path}`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.2,
+    })),
   ];
 }

@@ -13,8 +13,13 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
   </div>
 );
 
-const Todo = () => (
-  <span className="text-zinc-500 italic">en cours</span>
+/**
+ * Aucune immatriculation à ce jour : ni SIRET, ni RCS, ni TVA. Ne pas écrire « en cours »
+ * — ce serait annoncer une démarche engagée. Ces mentions deviennent obligatoires dès la
+ * première vente, en même temps que des CGV.
+ */
+const NonImmatricule = () => (
+  <span className="text-zinc-500 italic">sans objet — éditeur non immatriculé</span>
 );
 
 export default function MentionsLegalesPage() {
@@ -34,11 +39,15 @@ export default function MentionsLegalesPage() {
           <p><span className="text-zinc-300 font-medium">Adresse :</span> 14 rue de Canvel, 44420 La Turballe, France</p>
           <p><span className="text-zinc-300 font-medium">Email :</span> contact@mappli.fr</p>
           <p><span className="text-zinc-300 font-medium">Site web :</span> https://mappli.fr</p>
-          <p><span className="text-zinc-300 font-medium">Forme juridique :</span> <Todo /></p>
-          <p><span className="text-zinc-300 font-medium">Capital social :</span> <Todo /></p>
-          <p><span className="text-zinc-300 font-medium">SIRET :</span> <Todo /></p>
-          <p><span className="text-zinc-300 font-medium">RCS :</span> <Todo /></p>
-          <p><span className="text-zinc-300 font-medium">N° TVA intracommunautaire :</span> <Todo /></p>
+          <p><span className="text-zinc-300 font-medium">Forme juridique :</span> <NonImmatricule /></p>
+          <p><span className="text-zinc-300 font-medium">SIRET :</span> <NonImmatricule /></p>
+          <p><span className="text-zinc-300 font-medium">RCS :</span> <NonImmatricule /></p>
+          <p><span className="text-zinc-300 font-medium">N° TVA intracommunautaire :</span> <NonImmatricule /></p>
+          <p className="pt-2">
+            L&rsquo;éditeur n&rsquo;exerce aucune activité commerciale à ce jour : les applications
+            sont diffusées gratuitement et aucune vente n&rsquo;est réalisée. Les mentions
+            d&rsquo;immatriculation seront ajoutées à l&rsquo;ouverture des ventes.
+          </p>
         </Section>
 
         <Section title="2. Directeur de la publication">
@@ -72,10 +81,25 @@ export default function MentionsLegalesPage() {
             droits : contact@mappli.fr
           </p>
           <p>
-            Pour plus de détails, consultez notre{' '}
-            <a href="/privacy-policy" className="text-sky-400 hover:text-sky-300 underline underline-offset-2 transition-colors">
-              Politique de confidentialité
-            </a>.
+            Les applications ont chacune leurs propres documents légaux — les traitements diffèrent
+            d&rsquo;une app à l&rsquo;autre. Ils sont accessibles depuis la page de chaque
+            application, section «&nbsp;Informations légales&nbsp;» :{' '}
+            <a href="/apps/itero#legal" className="text-sky-400 hover:text-sky-300 underline underline-offset-2 transition-colors">
+              Itero.ai
+            </a>
+            ,{' '}
+            <a href="/apps/gestion-locative#legal" className="text-sky-400 hover:text-sky-300 underline underline-offset-2 transition-colors">
+              Gestion locative
+            </a>
+            ,{' '}
+            <a href="/apps/bilan-secouriste#legal" className="text-sky-400 hover:text-sky-300 underline underline-offset-2 transition-colors">
+              Bilan Secouriste
+            </a>
+            ,{' '}
+            <a href="/apps/sports-controls#legal" className="text-sky-400 hover:text-sky-300 underline underline-offset-2 transition-colors">
+              Sports Controls
+            </a>
+            .
           </p>
         </Section>
 

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import FeatureGrid from '../../../components/FeatureGrid';
+import LegalLinks from '../../../components/LegalLinks';
 import {
   FaKey,
   FaFileSignature,
@@ -139,10 +140,10 @@ export default function GestionLocativePage() {
                 Être informé du lancement →
               </a>
               <a
-                href="/gestion-locative/politique-confidentialite"
+                href="#legal"
                 className="bg-white border border-slate-200 text-slate-700 px-6 py-3 rounded-xl font-semibold hover:bg-slate-50 transition-colors"
               >
-                Politique de confidentialité
+                Informations légales
               </a>
             </div>
           </div>
@@ -233,6 +234,24 @@ export default function GestionLocativePage() {
           </p>
         </div>
       </section>
+
+      <LegalLinks
+        app="gestion-locative"
+        descriptions={{
+          mentions:
+            "Éditeur, hébergement (Firebase, fonctions en UE), avertissement sur les documents générés et les indications fiscales, propriété intellectuelle des modèles.",
+          privacy:
+            'Données de compte, biens, locataires et documents, rôle de sous-traitant pour les données de vos locataires, sous-traitants et droits RGPD.',
+          terms:
+            "Relecture des documents avant signature, compte, obligations envers vos locataires, achats (pas encore ouverts), usage autorisé et responsabilité.",
+        }}
+        note={
+          <>
+            Les achats intégrés ne sont pas encore ouverts : des conditions générales de vente
+            distinctes seront publiées avant tout paiement.
+          </>
+        }
+      />
 
       {/* CTA final */}
       <section className="max-w-3xl mx-auto px-6 py-20 text-center">
