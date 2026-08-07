@@ -1,7 +1,16 @@
 // Import icons from react-icons/fa
-import { FaBuilding, FaFutbol, FaAmbulance, FaHeartbeat, FaKey, FaMobileAlt, FaCloud, FaBullseye } from 'react-icons/fa';
+import { FaBuilding, FaFutbol, FaAmbulance, FaHeartbeat, FaKey, FaPlaneDeparture, FaMobileAlt, FaCloud, FaBullseye } from 'react-icons/fa';
 
 export const APPS = [
+  {
+    icon: FaPlaneDeparture, // Icône d'avion pour Itero.ai
+    name: 'Itero.ai',
+    tagline: 'Guide de voyage personnalisé',
+    description:
+      "Application mobile qui génère un guide de voyage complet à partir d'un formulaire : programme jour par jour, budget éco/confort, restaurants, carte, urgences et vocabulaire. Export PDF hors connexion, sans création de compte.",
+    platforms: ['Android', 'iOS bientôt'],
+    href: '/apps/itero',
+  },
   {
     icon: FaKey, // Icône de clé pour la gestion locative
     name: 'Gestion locative — bail & EDL',
