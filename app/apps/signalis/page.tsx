@@ -49,7 +49,7 @@ const MODULE_FAMILIES = [
       ['État civil', 'Actes de naissance, mariage, décès'],
       ['Cimetière', 'Concessions, plan, marbrerie, reprises'],
       ['Démarches en ligne', 'Guichet citoyen paramétrable'],
-      ['Urbanisme', 'Guichet ADS, délais légaux, actes, export EPCI'],
+      ['Urbanisme', 'Guichet de dépôt, suivi des délais et arrêtés du Maire'],
       ['GED / Archivage', 'Documents, plan de classement, durées légales'],
       ['Régie de recettes', 'Titres, encaissements, état de caisse, PES V2 & PayFiP'],
     ],
