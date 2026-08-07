@@ -5,7 +5,7 @@ import { FaBuilding, FaMobileAlt, FaChartBar, FaHardHat, FaMoon, FaTractor, FaPl
 export const metadata = {
   title: 'Signalis — Gestion des signalements pour les communes',
   description:
-    'Logiciel de signalement mairie : gérez les signalements citoyens, interventions techniques, astreintes et GMAO depuis une seule plateforme SaaS. Essai gratuit 100 jours.',
+    'Logiciel de signalement mairie : gérez les signalements citoyens, interventions techniques, astreintes et GMAO depuis une seule plateforme SaaS. Essai gratuit 60 jours.',
   keywords: [
     'gestion signalements communes',
     'plateforme SaaS collectivités',
@@ -18,6 +18,82 @@ export const metadata = {
   ],
   alternates: { canonical: '/apps/signalis' },
 };
+
+/**
+ * Catalogue des 25 modules — repris du dépôt Signalis : liste et descriptions de sa
+ * landing (`app/page.tsx`), complétées par le module Urbanisme (présent au catalogue
+ * commercial mais absent de ses cartes). Les familles reprennent la colonne « Cible »
+ * du tableau de CLAUDE.md.
+ *
+ * À maintenir en phase avec signalis.fr : un module vendu et non listé ici, ou l'inverse,
+ * se voit immédiatement côté prospect.
+ */
+const MODULE_FAMILIES = [
+  {
+    family: 'Services techniques',
+    modules: [
+      ['Signalements', 'Demandes citoyennes géolocalisées et suivies'],
+      ['Interventions', 'Prise en charge terrain par les agents'],
+      ['Matériel & GMAO', 'Parc, pannes, maintenance, carburant, API REST'],
+      ['Espaces verts', 'Entretien, récurrences, registre phyto réglementaire'],
+      ['Astreintes', 'Planning, arbre décisionnel et suivi des astreintes'],
+      ['Prêts de véhicules', 'Réservation et état des lieux'],
+      ['Énergie & Fluides', 'Compteurs et relevés'],
+    ],
+  },
+  {
+    family: 'Secrétariat, actes & finances',
+    modules: [
+      ['Actes & Arrêtés', 'Rédaction, signature, publication'],
+      ['Courrier', 'Registre arrivée / départ, chrono, échéances'],
+      ['État civil', 'Actes de naissance, mariage, décès'],
+      ['Cimetière', 'Concessions, plan, marbrerie, reprises'],
+      ['Démarches en ligne', 'Guichet citoyen paramétrable'],
+      ['Urbanisme', 'Guichet ADS, délais légaux, actes, export EPCI'],
+      ['GED / Archivage', 'Documents, plan de classement, durées légales'],
+      ['Régie de recettes', 'Titres, encaissements, état de caisse, PES V2 & PayFiP'],
+    ],
+  },
+  {
+    family: 'Vie locale & élus',
+    modules: [
+      ['Associations', 'Répertoire et subventions'],
+      ['Conseil municipal', 'Séances, délibérations, convocations'],
+      ['Manifestations', 'Événements, logistique, inscriptions'],
+      ['Réservation de salles', 'Créneaux, caution, tarification'],
+    ],
+  },
+  {
+    family: 'RH, sécurité & prévention',
+    modules: [
+      ['Congés & Absences RH', 'Demandes, soldes, planning, validateurs par service'],
+      ['Habilitations RH', 'Permis, formations, échéances'],
+      ['Police municipale', 'PV, objets trouvés, fourrière'],
+      ['Alertes & PCS', 'Risques, population vulnérable, contacts de crise'],
+      ['DUERP', 'Risques pro, cotation, versioning, plan d’actions'],
+    ],
+  },
+  {
+    family: 'Transversal',
+    modules: [['Rapports & Exports', 'Statistiques et exports CSV / PDF']],
+  },
+];
+
+const MODULE_COUNT = MODULE_FAMILIES.reduce((n, f) => n + f.modules.length, 0);
+
+const PACKS = [
+  { nom: 'Pack Technique', modules: 'Interventions · Matériel · Astreintes · Espaces verts' },
+  {
+    nom: 'Pack Secrétariat',
+    modules: 'Arrêtés · Cimetière · État civil · Courrier · Démarches',
+  },
+  {
+    nom: 'Pack Sécurité & RH',
+    modules: 'Police municipale · Congés RH · Alertes & PCS · Habilitations · DUERP',
+  },
+  { nom: 'Pack Vie locale', modules: 'Associations · Conseil municipal · Manifestations' },
+  { nom: 'Pack Complet', modules: `Les ${MODULE_COUNT} modules, sans exception`, featured: true },
+];
 
 const FEATURES = [
   {
@@ -81,7 +157,7 @@ export default function SignalisPage() {
               Plateforme SaaS tout-en-un pour collectivités : signalements citoyens, interventions, GMAO
             </p>
             <p className="text-slate-300 leading-relaxed mb-8">
-              Centralisez toute la chaîne de gestion technique de votre commune : du signalement citoyen jusqu'à l'intervention de l'agent. Fini les demandes perdues et le manque de traçabilité. Opérationnel en une journée, sans formation.
+              Centralisez toute la chaîne de gestion communale : du signalement citoyen jusqu'à l'intervention de l'agent, en passant par le secrétariat, les finances, les RH et la sécurité civile. {MODULE_COUNT} modules activables un par un, données isolées par commune, journal d'audit immuable.
             </p>
             <div className="flex gap-3 flex-wrap mb-6">
               {['Web', 'Mobile', 'SaaS', 'API'].map((p) => (
@@ -95,12 +171,12 @@ export default function SignalisPage() {
             </div>
             <div className="flex gap-3 flex-wrap">
               <a
-                href="https://signalis-mu.vercel.app"
+                href="https://signalis.fr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary text-white px-6 py-3 rounded-xl font-semibold"
               >
-                Tester la démo →
+                Voir signalis.fr →
               </a>
               <a
                 href="/contact?sujet=D%C3%A9mo+Signalis"
@@ -137,9 +213,53 @@ export default function SignalisPage() {
         </div>
       </section>
 
-      {/* Détails Techniques & Modules */}
+      {/* Catalogue des modules */}
       <section className="py-20">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <span className="text-sm font-bold text-sky-400 uppercase tracking-[0.15em] mb-3 block">
+              Catalogue
+            </span>
+            <h2 className="text-3xl font-bold text-white mb-3">
+              {MODULE_COUNT} modules, activables un par un
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Toute la gestion communale — services techniques, secrétariat, finances, vie locale,
+              RH et sécurité civile. Vous n&apos;activez que ce dont vous avez besoin, et vous
+              ajoutez le reste quand vous le voulez.
+            </p>
+          </div>
+
+          <div className="space-y-10">
+            {MODULE_FAMILIES.map(({ family, modules }) => (
+              <div key={family}>
+                <h3 className="text-sm font-bold text-sky-400 uppercase tracking-[0.15em] mb-4">
+                  {family}
+                  <span className="text-slate-500 font-semibold normal-case tracking-normal ml-2">
+                    · {modules.length} modules
+                  </span>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {modules.map(([name, desc]) => (
+                    <div
+                      key={name}
+                      className="bg-white/5 backdrop-blur-md p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-colors"
+                    >
+                      <h4 className="font-bold text-white text-sm mb-1">{name}</h4>
+                      <p className="text-slate-400 text-xs leading-relaxed">{desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Détails Techniques & Modules */}
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
           <h2 className="text-3xl font-bold text-white mb-10 text-center">
             Conçu pour les collectivités
           </h2>
@@ -181,6 +301,8 @@ export default function SignalisPage() {
                   'PostgreSQL',
                   'Resend',
                   'Sentry',
+                  'PostHog',
+                  'Playwright',
                   'GitHub Actions',
                 ].map((tech) => (
                   <span
@@ -194,18 +316,34 @@ export default function SignalisPage() {
             </div>
             
             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
-              <h3 className="text-xl font-bold text-white mb-4">
-                Tarification transparente
-              </h3>
-              <p className="text-slate-300 mb-4">
-                Facturation annuelle adaptée aux procédures comptables (CHORUS).
+              <h3 className="text-xl font-bold text-white mb-4">Packs & tarification</h3>
+              <p className="text-slate-300 mb-5">
+                Facturation annuelle sur bon de commande, compatible CHORUS. Des packs pensés par
+                métier, ou des modules à la carte — le tarif dépend des modules retenus et de la
+                taille de la commune.
               </p>
-              <ul className="list-disc list-inside text-slate-300 space-y-2 ml-4 mb-4">
-                <li><strong>Socle Mairie :</strong> Inclus (Tableau de bord, équipe, annuaire, thème).</li>
-                <li><strong>Modules à la carte :</strong> Citoyens (490€), Cimetière (390€), Matériel (290€)...</li>
-                <li><strong>Offre "Mairie 100% Numérique" :</strong> 1 290 € / an avec tous les modules.</li>
-              </ul>
-              <p className="text-sm text-slate-400 italic">Prix indicatifs pour une commune &lt; 2000 habitants.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+                {PACKS.map(({ nom, modules, featured }) => (
+                  <div
+                    key={nom}
+                    className={`rounded-2xl p-4 border ${
+                      featured
+                        ? 'bg-brand-600/20 border-brand-400/40'
+                        : 'bg-white/5 border-white/10'
+                    }`}
+                  >
+                    <div className="flex items-baseline justify-between gap-3">
+                      <h4 className="font-bold text-white text-sm">{nom}</h4>
+                      <span className="text-sky-400 text-xs font-semibold shrink-0">Sur devis</span>
+                    </div>
+                    <p className="text-slate-400 text-xs leading-relaxed mt-1.5">{modules}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm text-slate-400 italic">
+                Essai 60 jours sans engagement. Devis personnalisé selon vos modules et votre
+                population (communes de 1 000 à 10 000 habitants).
+              </p>
             </div>
           </div>
         </div>
@@ -215,16 +353,16 @@ export default function SignalisPage() {
       <section className="max-w-3xl mx-auto px-6 py-20 text-center">
         <h2 className="text-3xl font-bold text-white mb-4">Modernisez votre commune dès aujourd'hui</h2>
         <p className="text-slate-400 mb-8 text-lg">
-          Profitez d'un essai gratuit de 100 jours pour valider la solution avec vos équipes, sans engagement.
+          Profitez d'un essai gratuit de 60 jours pour valider la solution avec vos équipes, sans engagement.
         </p>
         <div className="flex gap-4 justify-center">
             <a
-            href="https://signalis-mu.vercel.app"
+            href="https://signalis.fr"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-block text-white font-bold px-8 py-4 rounded-xl text-lg"
             >
-            Découvrir la démo publique →
+            Découvrir signalis.fr →
             </a>
         </div>
       </section>
