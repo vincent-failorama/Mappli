@@ -10,6 +10,9 @@ import {
   FaLanguage,
   FaFirstAid,
   FaMagic,
+  FaBalanceScale,
+  FaUserShield,
+  FaFileContract,
 } from 'react-icons/fa';
 
 export const metadata = {
@@ -83,6 +86,33 @@ const APERCUS = [
     src: '/itero/apercu-3.png',
     alt: "Section urgences et vocabulaire avec prononciation figurée",
     legend: 'Urgences et vocabulaire de survie',
+  },
+];
+
+/**
+ * Les trois documents exigés par les stores : politique de confidentialité (Play Store
+ * et App Store), conditions d'utilisation / EULA (dès qu'il existe un achat intégré) et
+ * mentions légales (LCEN). Les pages sont GÉNÉRÉES depuis l'app (`pnpm legal:web` dans
+ * le dépôt Itero.ai) : ne pas les éditer ici.
+ */
+const LEGAL_DOCS = [
+  {
+    href: '/itero/mentions-legales',
+    icon: FaBalanceScale,
+    title: 'Mentions légales',
+    desc: "Éditeur, directeur de la publication, hébergeur, propriété intellectuelle, sources cartographiques (OpenStreetMap) et avertissement sur les contenus générés par IA.",
+  },
+  {
+    href: '/itero/privacy',
+    icon: FaUserShield,
+    title: 'Politique de confidentialité',
+    desc: "Données traitées, sous-traitants, transferts hors UE, durées de conservation et exercice de vos droits RGPD. C'est l'URL déclarée dans la fiche Play Store.",
+  },
+  {
+    href: '/itero/cgu',
+    icon: FaFileContract,
+    title: "Conditions d'utilisation",
+    desc: "Objet, avertissement sur la fiabilité des guides générés, quotas, exports offerts, usage autorisé, disponibilité, responsabilité et droit applicable.",
   },
 ];
 
@@ -168,12 +198,12 @@ export default function IteroPage() {
                 <FaFilePdf aria-hidden="true" />
                 Voir un guide complet (PDF)
               </a>
-              <Link
-                href="/itero/privacy"
+              <a
+                href="#legal"
                 className="border border-white/20 text-slate-300 px-6 py-3 rounded-xl font-semibold hover:border-white/40 transition-colors text-sm flex items-center"
               >
-                Politique de confidentialité
-              </Link>
+                Informations légales
+              </a>
             </div>
           </div>
 
@@ -334,9 +364,50 @@ export default function IteroPage() {
         </div>
       </section>
 
+      {/* Informations légales */}
+      <section id="legal" className="scroll-mt-24 py-20">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <span className="text-sm font-bold text-sky-400 uppercase tracking-[0.15em] mb-3 block">
+              Légal
+            </span>
+            <h2 className="text-3xl font-bold text-white mb-3">Informations légales</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Les trois documents applicables à l&apos;application, dans leur version en vigueur.
+              Ce sont les URL publiques référencées sur les fiches Google Play et App Store.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {LEGAL_DOCS.map(({ href, icon: Icon, title, desc }) => (
+              <Link
+                key={href}
+                href={href}
+                className="group bg-white/5 backdrop-blur-md p-7 rounded-3xl border border-white/10 hover:border-white/25 hover:bg-white/[0.08] transition-colors flex flex-col gap-3"
+              >
+                <Icon aria-hidden="true" className="text-3xl text-sky-400" />
+                <h3 className="text-lg font-bold text-white group-hover:text-sky-400 transition-colors">
+                  {title}
+                </h3>
+                <p className="text-slate-400 text-sm leading-relaxed flex-1">{desc}</p>
+                <span className="text-sky-400 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                  Lire →
+                </span>
+              </Link>
+            ))}
+          </div>
+          <p className="text-slate-500 text-sm mt-8 text-center max-w-2xl mx-auto">
+            La version française fait foi. Les mêmes textes sont consultables dans
+            l&apos;application, écran «&nbsp;Informations légales&nbsp;», y compris hors connexion.
+            Des conditions générales de vente distinctes seront publiées avant l&apos;ouverture des
+            achats.
+          </p>
+        </div>
+      </section>
+
       {/* Tarifs */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-20 relative">
+        <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-3">Tarifs</h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
@@ -376,9 +447,8 @@ export default function IteroPage() {
       </section>
 
       {/* Détails techniques */}
-      <section className="py-20 relative">
-        <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-white mb-10 text-center">
             Architecture &amp; détails techniques
           </h2>

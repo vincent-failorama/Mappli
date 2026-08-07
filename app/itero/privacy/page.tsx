@@ -3,14 +3,14 @@ import type { Metadata } from 'next';
 /**
  * SOURCE DE VÉRITÉ : `apps/mobile/src/legal/fr.ts` du dépôt Itero.ai (document
  * « privacy »). Cette page en est une transposition EXACTE, générée depuis ce
- * fichier — la fiche Play Store exige une URL publique, l'écran in-app ne suffit
- * pas. Toute modification doit être faite D'ABORD dans l'app, puis reportée ici :
- * deux versions divergentes seraient pires que pas de page du tout.
+ * fichier — les fiches Play Store / App Store exigent des URL publiques, l'écran
+ * in-app ne suffit pas. Toute modification doit être faite D'ABORD dans l'app, puis
+ * reportée ici : deux versions divergentes seraient pires que pas de page du tout.
  *
  * NE PAS ÉDITER À LA MAIN — régénérer avec `pnpm legal:web` depuis Itero.ai.
  */
 export const metadata: Metadata = {
-  title: 'Politique de confidentialité — Itero.ai',
+  title: "Politique de confidentialité — Itero.ai",
   description:
     "Politique de confidentialité de l'application Itero.ai (Mappli) : données traitées, sous-traitants, transferts hors UE et droits RGPD.",
   robots: { index: false, follow: false },
@@ -33,8 +33,7 @@ export default function PolitiqueConfidentialiteIteroPage() {
           </span>
           <h1 className="text-4xl font-black text-white mb-3">Politique de confidentialité</h1>
           <p className="text-zinc-400 text-sm">
-            Application <strong className="text-zinc-200">Itero.ai</strong> — traitement des données
-            personnelles (RGPD)
+            Application <strong className="text-zinc-200">Itero.ai</strong> — traitement des données personnelles (RGPD)
           </p>
           <p className="text-zinc-600 text-xs mt-1">Dernière mise à jour : 2 août 2026</p>
         </div>
@@ -107,8 +106,8 @@ export default function PolitiqueConfidentialiteIteroPage() {
         </Section>
 
         <p className="text-zinc-600 text-xs mt-12">
-          Cette politique est également consultable dans l&rsquo;application, écran «&nbsp;Informations
-          légales&nbsp;», avec les mentions légales et les conditions d&rsquo;utilisation.
+          Ce document est également consultable dans l&rsquo;application, écran «&nbsp;Informations
+          légales&nbsp;», avec les deux autres.
         </p>
       </div>
     </main>
