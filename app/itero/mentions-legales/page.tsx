@@ -43,7 +43,7 @@ export default function MentionsLegalesIteroPage() {
           <p>Adresse : 14 rue de Canvel, 44420 La Turballe, France</p>
           <p>Email : contact@mappli.fr</p>
           <p>Site web : https://mappli.fr</p>
-          <p>Statut : éditeur non immatriculé. L&rsquo;application est diffusée gratuitement et ne donne lieu à aucune activité commerciale à ce jour. Les mentions d&rsquo;immatriculation (forme juridique, SIRET, RCS, TVA) seront ajoutées à l&rsquo;ouverture des ventes.</p>
+          <p>Immatriculation : en cours. Dans l&rsquo;attente, l&rsquo;application est diffusée gratuitement et ne donne lieu à aucune vente. La forme juridique, le SIRET, le RCS et le numéro de TVA seront renseignés dès leur obtention, avant toute ouverture des ventes.</p>
         </Section>
 
         <Section title="2. Directeur de la publication">

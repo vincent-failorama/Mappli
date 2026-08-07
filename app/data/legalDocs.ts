@@ -17,10 +17,10 @@
  * de confidentialité déjà publiées et, pour Bilan Secouriste, de son écran « Mentions
  * légales » embarqué). Ils n'ont pas été relus par un juriste.
  *
- * ⚠️ Aucune immatriculation à ce jour et aucun encaissement branché : les textes disent
- * « éditeur non immatriculé » et « aucune vente ». Ne pas écrire « en cours » — ce serait
- * annoncer une démarche engagée. Dès la première vente : forme juridique, SIRET, RCS et
- * TVA deviennent obligatoires, et des CGV distinctes doivent être publiées.
+ * ⚠️ Immatriculation ENGAGÉE, prévue pour septembre 2026, et aucun encaissement branché à
+ * ce jour : les textes disent « immatriculation en cours » et « aucune vente ». Dès
+ * réception, renseigner ici forme juridique, SIRET, RCS et TVA — ces mentions sont
+ * obligatoires avant la première vente, en même temps que des CGV distinctes.
  */
 
 export interface LegalSection {
@@ -48,9 +48,9 @@ export const IDENTITY = {
 
 const UPDATED = '7 août 2026';
 
-/** Statut de l'éditeur — identique dans les trois documents, et vrai tant qu'il n'y a pas de vente. */
+/** Statut de l'éditeur — identique dans les trois documents, à mettre à jour dès l'obtention des numéros. */
 const STATUT_EDITEUR =
-  "Statut : éditeur non immatriculé. L'application est diffusée gratuitement et ne donne lieu à aucune activité commerciale à ce jour. Les mentions d'immatriculation (forme juridique, SIRET, RCS, TVA) seront ajoutées à l'ouverture des ventes.";
+  "Immatriculation : en cours. Dans l'attente, l'application est diffusée gratuitement et ne donne lieu à aucune vente. La forme juridique, le SIRET, le RCS et le numéro de TVA seront renseignés dès leur obtention, avant toute ouverture des ventes.";
 
 const EDITEUR_BULLETS = [
   `Nom : ${IDENTITY.editor}`,

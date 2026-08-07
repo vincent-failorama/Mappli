@@ -14,13 +14,12 @@ const Section = ({ title, children }: { title: string; children: React.ReactNode
 );
 
 /**
- * Aucune immatriculation à ce jour : ni SIRET, ni RCS, ni TVA. Ne pas écrire « en cours »
- * — ce serait annoncer une démarche engagée. Ces mentions deviennent obligatoires dès la
- * première vente, en même temps que des CGV.
+ * Immatriculation engagée, prévue pour septembre 2026 : « en cours » est exact et doit le
+ * rester jusqu'à l'obtention des numéros. Remplacer chaque occurrence par la valeur réelle
+ * dès réception (forme juridique, SIRET, RCS, TVA) — ces mentions sont obligatoires avant
+ * la première vente, en même temps que des CGV.
  */
-const NonImmatricule = () => (
-  <span className="text-zinc-500 italic">sans objet — éditeur non immatriculé</span>
-);
+const EnCours = () => <span className="text-zinc-500 italic">en cours</span>;
 
 export default function MentionsLegalesPage() {
   return (
@@ -39,14 +38,16 @@ export default function MentionsLegalesPage() {
           <p><span className="text-zinc-300 font-medium">Adresse :</span> 14 rue de Canvel, 44420 La Turballe, France</p>
           <p><span className="text-zinc-300 font-medium">Email :</span> contact@mappli.fr</p>
           <p><span className="text-zinc-300 font-medium">Site web :</span> https://mappli.fr</p>
-          <p><span className="text-zinc-300 font-medium">Forme juridique :</span> <NonImmatricule /></p>
-          <p><span className="text-zinc-300 font-medium">SIRET :</span> <NonImmatricule /></p>
-          <p><span className="text-zinc-300 font-medium">RCS :</span> <NonImmatricule /></p>
-          <p><span className="text-zinc-300 font-medium">N° TVA intracommunautaire :</span> <NonImmatricule /></p>
+          <p><span className="text-zinc-300 font-medium">Forme juridique :</span> <EnCours /></p>
+          <p><span className="text-zinc-300 font-medium">Capital social :</span> <EnCours /></p>
+          <p><span className="text-zinc-300 font-medium">SIRET :</span> <EnCours /></p>
+          <p><span className="text-zinc-300 font-medium">RCS :</span> <EnCours /></p>
+          <p><span className="text-zinc-300 font-medium">N° TVA intracommunautaire :</span> <EnCours /></p>
           <p className="pt-2">
-            L&rsquo;éditeur n&rsquo;exerce aucune activité commerciale à ce jour : les applications
-            sont diffusées gratuitement et aucune vente n&rsquo;est réalisée. Les mentions
-            d&rsquo;immatriculation seront ajoutées à l&rsquo;ouverture des ventes.
+            L&rsquo;immatriculation de l&rsquo;éditeur est en cours. Dans l&rsquo;attente, les
+            applications sont diffusées gratuitement et aucune vente n&rsquo;est réalisée : les
+            numéros ci-dessus seront renseignés dès leur obtention, avant toute ouverture des
+            ventes.
           </p>
         </Section>
 
