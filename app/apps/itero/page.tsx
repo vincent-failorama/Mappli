@@ -96,19 +96,19 @@ const PLANS = [
   },
   {
     name: '1 export PDF',
-    price: '3,99 €',
+    price: '2,99 €',
     desc: 'Le guide complet, version enrichie, exporté en PDF.',
     highlight: false,
   },
   {
     name: '5 exports PDF',
-    price: '9,99 €',
-    desc: '~2 € par guide — un stock utilisable sur n’importe quels voyages.',
+    price: '7,99 €',
+    desc: '~1,60 € par guide — un stock utilisable sur n’importe quels voyages.',
     highlight: true,
   },
   {
     name: '10 exports PDF',
-    price: '16,99 €',
+    price: '12,99 €',
     desc: 'Pour les gros voyageurs et les usages familiaux.',
     highlight: false,
   },
