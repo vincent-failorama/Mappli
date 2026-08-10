@@ -28,12 +28,12 @@ export default async function ContactPage({ searchParams }: Props) {
         <p className="text-sky-400 text-sm font-semibold uppercase tracking-widest mb-3">
           Parlons de votre projet
         </p>
-        <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-4">
+        <h1 className="text-4xl sm:text-5xl font-black text-white leading-[1.1] tracking-tight mb-4">
           Nous contacter
         </h1>
         <p className="text-slate-300 text-lg leading-relaxed">
-          Une idée d&apos;application, une question sur nos outils ou une demande de démo ?
-          Décrivez votre besoin, nous vous répondons sous 24 h.
+          Une idée d&apos;application, une question sur nos outils ou une demande de démo ? Décrivez
+          votre besoin, nous vous répondons sous 24 h.
         </p>
       </div>
 

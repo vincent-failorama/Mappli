@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, ReactNode } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { m, useMotionValue, useSpring } from 'framer-motion';
 
 export default function MagneticButton({
   children,
@@ -14,8 +14,10 @@ export default function MagneticButton({
   strength?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const x = useSpring(useMotionValue(0), { stiffness: 200, damping: 15 });
-  const y = useSpring(useMotionValue(0), { stiffness: 200, damping: 15 });
+  // Amortissement critique (ζ = damping / 2√(stiffness·mass) ≈ 1) : un suivi de
+  // curseur ne porte aucun momentum, un rebond y serait arbitraire.
+  const x = useSpring(useMotionValue(0), { stiffness: 200, damping: 28 });
+  const y = useSpring(useMotionValue(0), { stiffness: 200, damping: 28 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = ref.current?.getBoundingClientRect();
@@ -38,9 +40,7 @@ export default function MagneticButton({
       onMouseLeave={handleMouseLeave}
       className={`inline-block ${className}`}
     >
-      <motion.div style={{ x, y }}>
-        {children}
-      </motion.div>
+      <m.div style={{ x, y }}>{children}</m.div>
     </div>
   );
 }

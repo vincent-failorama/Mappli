@@ -1,21 +1,30 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring, animate } from 'framer-motion';
+import { m, useMotionValue, useSpring, animate } from 'framer-motion';
 
 export default function CustomCursor() {
   const [hasPointer, setHasPointer] = useState(false);
 
   useEffect(() => {
-    setHasPointer(window.matchMedia('(pointer: fine)').matches);
+    const fine = window.matchMedia('(pointer: fine)').matches;
+    setHasPointer(fine);
+    if (!fine) return;
+    // Signale à la CSS que le curseur de remplacement est en place — c'est ce
+    // marqueur, et lui seul, qui masque le curseur natif.
+    document.documentElement.dataset.customCursor = 'on';
+    return () => {
+      delete document.documentElement.dataset.customCursor;
+    };
   }, []);
 
   const dotX = useMotionValue(-100);
   const dotY = useMotionValue(-100);
 
   // Ring : suit avec lag spring
-  const ringX = useSpring(dotX, { stiffness: 120, damping: 20, mass: 0.5 });
-  const ringY = useSpring(dotY, { stiffness: 120, damping: 20, mass: 0.5 });
+  // Seul ressort du site qui était sur-amorti (ζ ≈ 1,29) : le ring traînait.
+  const ringX = useSpring(dotX, { stiffness: 120, damping: 15, mass: 0.5 });
+  const ringY = useSpring(dotY, { stiffness: 120, damping: 15, mass: 0.5 });
 
   const ringSize = useMotionValue(32);
   const ringOpacity = useMotionValue(0.5);
@@ -61,7 +70,7 @@ export default function CustomCursor() {
   return (
     <>
       {/* Dot central — suit le curseur sans lag */}
-      <motion.div
+      <m.div
         className="fixed top-0 left-0 w-1.5 h-1.5 bg-white rounded-full pointer-events-none z-[9999]"
         style={{
           x: dotX,
@@ -71,7 +80,7 @@ export default function CustomCursor() {
         }}
       />
       {/* Ring — suit avec lag spring */}
-      <motion.div
+      <m.div
         className="fixed top-0 left-0 rounded-full border pointer-events-none z-[9998]"
         style={{
           x: ringX,

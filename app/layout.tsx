@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import MotionProvider from '../components/MotionProvider';
 
 // Chargés uniquement côté client (window / document requis)
 const CustomCursor = dynamic(() => import('../components/CustomCursor'), { ssr: false });
@@ -11,7 +12,11 @@ const BokehBackground = dynamic(() => import('../components/BokehBackground'), {
 
 import type { Metadata } from 'next';
 
-const montserrat = Montserrat({ subsets: ['latin'], display: 'swap', weight: ['400', '500', '600', '700', '800', '900'] });
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800', '900'],
+});
 
 export const metadata: Metadata = {
   title: 'MAPPLI — Applications mobiles & web sur mesure',
@@ -95,15 +100,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-[#020617] text-white antialiased">
-        <div className="noise" />
-        <BokehBackground />
-        <CustomCursor />
-        <a href="#main-content" className="skip-link">
-          Aller au contenu principal
-        </a>
-        <Navbar />
-        <main id="main-content" className="relative z-[2] pt-16">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <div className="noise" />
+          <BokehBackground />
+          <CustomCursor />
+          <a href="#main-content" className="skip-link">
+            Aller au contenu principal
+          </a>
+          <Navbar />
+          <main id="main-content" className="relative z-[2] pt-16">
+            {children}
+          </main>
+          <Footer />
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

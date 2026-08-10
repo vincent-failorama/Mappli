@@ -18,9 +18,15 @@ export default function StatCounter({ value, label }: { value: string; label: st
 
   useEffect(() => {
     if (!isInView) return;
-    if (prefersReducedMotion) { setCount(num); return; }
+    if (prefersReducedMotion) {
+      setCount(num);
+      return;
+    }
 
-    const duration = 1800;
+    // 900 ms et non 1800 : avec l'ease-out expo ci-dessous, 97 % de la valeur
+    // finale est atteinte à mi-parcours (à p = 0.5, 1 − 2^−5 ≈ 0,969). Les
+    // 900 ms supplémentaires n'étaient qu'une reptation invisible.
+    const duration = 900;
     const start = performance.now();
     let raf: number;
 
@@ -40,7 +46,9 @@ export default function StatCounter({ value, label }: { value: string; label: st
   return (
     <div ref={ref}>
       <div className="text-4xl sm:text-5xl font-black gradient-text mb-3">
-        {prefix}{count}{suffix}
+        {prefix}
+        {count}
+        {suffix}
       </div>
       <div className="text-zinc-400 text-sm font-medium">{label}</div>
     </div>

@@ -15,7 +15,7 @@ export default function FeatureGrid({ features, variant = 'dark' }: FeatureGridP
   const cardClass =
     variant === 'light'
       ? 'bg-white p-8 rounded-2xl shadow-sm border border-slate-100'
-      : 'bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-all';
+      : 'bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-white/20 transition-colors duration-300';
   const iconClass = variant === 'light' ? 'text-brand-600' : 'text-sky-400';
   const titleClass = variant === 'light' ? 'text-slate-900' : 'text-white';
   const descClass = variant === 'light' ? 'text-slate-600' : 'text-zinc-300';

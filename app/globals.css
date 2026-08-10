@@ -6,26 +6,27 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Curseur natif masqué sur desktop uniquement (le custom cursor prend le relais) */
+/* Curseur natif masqué seulement une fois que CustomCursor a effectivement monté
+   et posé data-custom-cursor. Sans cette condition, un échec de montage du
+   composant (erreur JS, chunk manquant) laisserait la page sans aucun curseur. */
 @media (hover: hover) and (pointer: fine) {
-  html { cursor: none; }
-  input, textarea, select { cursor: text; }
+  html[data-custom-cursor='on'] {
+    cursor: none;
+  }
+  html[data-custom-cursor='on'] input,
+  html[data-custom-cursor='on'] textarea,
+  html[data-custom-cursor='on'] select {
+    cursor: text;
+  }
 }
-
-/* ── BLOBS ── */
-.blobs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.blob { position: absolute; border-radius: 50%; filter: blur(100px); }
-.b1 { width: 700px; height: 700px; background: radial-gradient(circle, #0ea5e9 0%, transparent 70%); top: -150px; left: -100px; opacity: .35; animation: blob-f1 18s ease-in-out infinite; }
-.b2 { width: 600px; height: 600px; background: radial-gradient(circle, #8b5cf6 0%, transparent 70%); top: 15%; right: -100px; opacity: .28; animation: blob-f2 22s ease-in-out infinite; }
-.b3 { width: 500px; height: 500px; background: radial-gradient(circle, #3b82f6 0%, transparent 70%); bottom: -50px; left: 25%; opacity: .28; animation: blob-f3 16s ease-in-out infinite; }
-
-@keyframes blob-f1 { 0%, 100% { transform: translate(0, 0) scale(1); } 40% { transform: translate(50px, -40px) scale(1.1); } }
-@keyframes blob-f2 { 0%, 100% { transform: translate(0, 0) scale(1); } 35% { transform: translate(-50px, 40px) scale(1.05); } }
-@keyframes blob-f3 { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(30px, -30px) scale(1.08); } }
 
 /* ── NOISE ── */
 .noise {
-  position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .04;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -155,8 +156,12 @@ html {
 }
 
 @keyframes shimmer-text {
-  0% { background-position: -150% 0; }
-  100% { background-position: 150% 0; }
+  0% {
+    background-position: -150% 0;
+  }
+  100% {
+    background-position: 150% 0;
+  }
 }
 
 /* Shimmer badge */
@@ -188,9 +193,14 @@ html {
     transform 0.2s ease,
     opacity 0.2s ease;
 }
-.btn-primary:hover {
-  box-shadow: 0 0 40px rgba(14, 165, 233, 0.6);
-  transform: translateY(-2px);
+/* Les `:hover` écrits à la main ne sont pas couverts par le
+   `hoverOnlyWhenSupported` de Tailwind : ils doivent être conditionnés ici,
+   sinon un tap sur mobile déclenche l'état et le laisse collé. */
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.6);
+    transform: translateY(-2px);
+  }
 }
 
 /* ──────────────────────────────────────────────
@@ -233,11 +243,55 @@ html {
 
 /* Scroll indicator bounce */
 @keyframes scroll-bounce {
-  0%, 100% { transform: translateY(0);  opacity: 0.6; }
-  50%       { transform: translateY(8px); opacity: 0.2; }
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.2;
+  }
 }
 .scroll-bounce {
   animation: scroll-bounce 1.8s ease-in-out infinite;
+}
+
+/* Barre de navigation — piloté en CSS et non en JS : Framer animait `height`,
+   `backgroundColor` et surtout `backdrop-filter` frame par frame sur le thread
+   principal. Le rayon de flou est désormais constant (le faire varier est l'une
+   des opérations les plus coûteuses pour le compositeur). */
+.navbar {
+  height: 64px; /* fixe : plus aucune animation de layout */
+}
+
+/* Le fond est un calque à part, réduit en scaleY depuis le haut (64 → 52 px).
+   Le contenu remonte de 6 px pour rester centré dans la barre réduite. Tout est
+   composité : ni `height`, ni `backdrop-filter` ne varient. */
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transform-origin: top;
+  transition:
+    transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 350ms ease;
+}
+.navbar-scrolled::before {
+  transform: scaleY(0.8125); /* 52 / 64 */
+  background-color: rgba(2, 6, 23, 0.88);
+}
+.navbar-inner {
+  position: relative;
+  z-index: 1;
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.navbar-scrolled .navbar-inner {
+  transform: translateY(-6px);
 }
 
 /* Nav link underline — scale from left on hover */
@@ -258,16 +312,17 @@ html {
   pointer-events: none;
   will-change: transform;
 }
-.nav-link-anim:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+@media (hover: hover) and (pointer: fine) {
+  .nav-link-anim:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
-/* Card shimmer sweep on hover */
-@keyframes shimmer-sweep {
-  from { transform: translateX(-100%) skewX(-12deg); }
-  to   { transform: translateX(220%)  skewX(-12deg); }
-}
+/* Card shimmer sweep on hover — transition et non keyframes : un aller-retour
+   rapide du curseur retargete le balayage depuis sa position courante au lieu
+   de le redémarrer à zéro. Au relâchement, le voile s'efface d'abord (opacité)
+   puis la position se réinitialise sans transition — pas de balayage inverse. */
 .card-hover-shimmer {
   position: relative;
   overflow: hidden;
@@ -283,18 +338,32 @@ html {
     transparent 70%
   );
   transform: translateX(-100%) skewX(-12deg);
+  opacity: 0;
   pointer-events: none;
   z-index: 2;
+  transition:
+    opacity 200ms ease-out,
+    transform 0ms 250ms;
 }
-.card-hover-shimmer:hover::after {
-  animation: shimmer-sweep 0.65s ease forwards;
+@media (hover: hover) and (pointer: fine) {
+  .card-hover-shimmer:hover::after {
+    transform: translateX(220%) skewX(-12deg);
+    opacity: 1;
+    transition:
+      transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 150ms ease-out;
+  }
 }
-
 
 /* CTA orb subtle pulse */
 @keyframes glow-pulse {
-  0%, 100% { opacity: 0.18; }
-  50%       { opacity: 0.35; }
+  0%,
+  100% {
+    opacity: 0.18;
+  }
+  50% {
+    opacity: 0.35;
+  }
 }
 .glow-pulse {
   animation: glow-pulse 3.5s ease-in-out infinite;
@@ -305,8 +374,16 @@ html {
 
 /* Section label slide-in (used via Framer on viewport enter) */
 @keyframes label-in {
-  from { opacity: 0; transform: translateY(6px); letter-spacing: 0.28em; }
-  to   { opacity: 1; transform: translateY(0);   letter-spacing: 0.15em; }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+    letter-spacing: 0.28em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.15em;
+  }
 }
 
 /* ──────────────────────────────────────────────
@@ -350,6 +427,32 @@ button:focus-visible,
 .btn-primary:active {
   transform: translateY(0px) scale(0.98);
   box-shadow: 0 0 16px rgba(14, 165, 233, 0.35);
+}
+
+/* Boutons secondaires — même retour au clic que .btn-primary */
+/* transition-property explicite : ces boutons portent aussi `transition-colors`,
+   dont la déclaration serait écrasée par un raccourci `transition`. */
+.btn-secondary {
+  transition-property: color, background-color, border-color, transform;
+  transition-duration: 160ms;
+  transition-timing-function: ease-out;
+}
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Le site est intégralement en verre : sans ce bloc, le réglage système
+   « réduire la transparence » n'a aucun effet sur la lisibilité. */
+@media (prefers-reduced-transparency: reduce) {
+  *,
+  ::before,
+  ::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .noise {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

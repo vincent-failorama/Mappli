@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { m, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
@@ -19,16 +19,10 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.header
-        className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.07]"
-        animate={{
-          height: scrolled ? 52 : 64,
-          backgroundColor: scrolled ? 'rgba(2,6,23,0.88)' : 'rgba(255,255,255,0.03)',
-          backdropFilter: scrolled ? 'blur(24px)' : 'blur(12px)',
-        }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
+      <header
+        className={`navbar fixed top-0 left-0 right-0 z-50 ${scrolled ? 'navbar-scrolled' : ''}`}
       >
-        <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+        <div className="navbar-inner max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
           <Link href="/" className="flex items-center" aria-label="MAPPLI — Accueil">
             <Image
               src="/logo-mappli.png"
@@ -42,7 +36,10 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-            <Link href="/#apps" className="nav-link-anim text-zinc-400 hover:text-white transition-colors">
+            <Link
+              href="/#apps"
+              className="nav-link-anim text-zinc-400 hover:text-white transition-colors"
+            >
               Nos apps
             </Link>
             <Link
@@ -61,15 +58,19 @@ export default function Navbar() {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
-            {menuOpen ? <FaTimes size={20} aria-hidden="true" /> : <FaBars size={20} aria-hidden="true" />}
+            {menuOpen ? (
+              <FaTimes size={20} aria-hidden="true" />
+            ) : (
+              <FaBars size={20} aria-hidden="true" />
+            )}
           </button>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile menu overlay */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
+          <m.div
             id="mobile-menu"
             role="dialog"
             aria-label="Menu principal"
@@ -95,7 +96,7 @@ export default function Navbar() {
                 Contact
               </a>
             </nav>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
+  // Les variantes `hover:` ne s'appliquent qu'aux pointeurs fins : sur mobile, un
+  // tap déclenche sinon le :hover, qui reste collé après le relâchement.
+  future: { hoverOnlyWhenSupported: true },
   theme: {
     extend: {
       keyframes: {
