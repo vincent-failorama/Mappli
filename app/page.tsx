@@ -5,7 +5,7 @@ import FeatureCard from '../components/FeatureCard';
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
-import ScrollReveal, { StaggerContainer } from '../components/ScrollReveal';
+import ScrollReveal, { StaggerContainer, StaggerItem } from '../components/ScrollReveal';
 import StatCounter from '../components/StatCounter';
 import SplitText from '../components/SplitText';
 import MagneticButton from '../components/MagneticButton';
@@ -68,7 +68,7 @@ export default function HomePage() {
             </MagneticButton>
             <a
               href="/contact"
-              className="bg-white/5 border border-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-colors"
+              className="btn-secondary bg-white/5 border border-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-colors"
             >
               Nous contacter
             </a>
@@ -86,7 +86,7 @@ export default function HomePage() {
         <div className="flex items-center">
           <div className="animate-marquee flex items-center gap-16 whitespace-nowrap pr-16">
             {[...STACK, ...STACK].map((tech, i) => (
-              <span key={i} className="text-white/30 font-bold text-xs tracking-[0.15em] uppercase">
+              <span key={i} className="text-white/45 font-bold text-xs tracking-[0.15em] uppercase">
                 {tech}
               </span>
             ))}
@@ -102,7 +102,7 @@ export default function HomePage() {
               <span className="text-sm font-bold text-sky-400 uppercase tracking-[0.15em] mb-4 block">
                 Notre approche
               </span>
-              <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
+              <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-[1.1] tracking-tight">
                 Tout ce qu&apos;il faut.
                 <br />
                 Rien de superflu.
@@ -115,13 +115,13 @@ export default function HomePage() {
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {FEATURES.map((f) => (
-              <ScrollReveal key={f.title}>
+              <StaggerItem key={f.title} className="h-full">
                 <FeatureCard
                   icon={f.icon ? <f.icon className="inline-block" /> : null}
                   title={f.title}
                   desc={f.desc}
                 />
-              </ScrollReveal>
+              </StaggerItem>
             ))}
           </StaggerContainer>
         </div>
@@ -135,7 +135,7 @@ export default function HomePage() {
               <span className="text-sm font-bold text-sky-400 uppercase tracking-[0.15em] mb-4 block">
                 Nos applications
               </span>
-              <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
+              <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-[1.1] tracking-tight">
                 Des outils prêts à l&apos;emploi
               </h2>
               <p className="text-zinc-400 text-lg max-w-xl mx-auto">
@@ -148,20 +148,20 @@ export default function HomePage() {
             {APPS.map((app) => {
               const { icon: Icon, ...rest } = app;
               return (
-                <ScrollReveal key={app.name}>
+                <StaggerItem key={app.name} className="h-full">
                   <AppCard {...rest} iconEl={<Icon className="inline-block" />} />
-                </ScrollReveal>
+                </StaggerItem>
               );
             })}
 
             {/* Coming soon placeholder */}
-            <ScrollReveal>
-              <div className="border-2 border-dashed border-white/20 rounded-2xl p-7 flex flex-col items-center justify-center gap-3 text-center min-h-[280px] bg-white/[0.02]">
+            <StaggerItem className="h-full">
+              <div className="h-full border-2 border-dashed border-white/20 rounded-2xl p-7 flex flex-col items-center justify-center gap-3 text-center min-h-[280px] bg-white/[0.02]">
                 <span className="text-4xl">✨</span>
                 <p className="font-bold text-zinc-400">Prochaine app</p>
                 <p className="text-zinc-500 text-sm">En développement</p>
               </div>
-            </ScrollReveal>
+            </StaggerItem>
           </StaggerContainer>
         </div>
       </section>
@@ -174,7 +174,7 @@ export default function HomePage() {
               <span className="text-sm font-bold text-sky-400 uppercase tracking-[0.15em] mb-4 block">
                 Process
               </span>
-              <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
+              <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-[1.1] tracking-tight">
                 Comment ça marche ?
               </h2>
               <p className="text-zinc-400 text-lg">
@@ -183,15 +183,15 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
 
-          <div className="space-y-5">
-            {STEPS.map((step, i) => (
-              <ScrollReveal key={step.number} delay={i * 120} variant="left">
+          <StaggerContainer className="space-y-5">
+            {STEPS.map((step) => (
+              <StaggerItem key={step.number} variant="left">
                 <div
                   className="card-hover-shimmer group flex gap-6 p-8 rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm
                                 hover:border-white/20 hover:shadow-xl hover:shadow-sky-500/10 hover:bg-white/[0.08]
-                                transition-all duration-300"
+                                transition-[color,background-color,border-color,box-shadow] duration-300"
                 >
-                  <div className="text-6xl font-black text-white/10 group-hover:text-sky-500/30 group-hover:scale-110 transition-all duration-300 ease-out shrink-0 leading-none mt-1 select-none">
+                  <div className="text-6xl font-black text-white/10 group-hover:text-sky-500/30 group-hover:scale-110 transition-[color,transform] duration-300 ease-out shrink-0 leading-none mt-1 select-none">
                     {step.number}
                   </div>
                   <div className="py-1">
@@ -201,9 +201,9 @@ export default function HomePage() {
                     <p className="text-zinc-400 leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
-              </ScrollReveal>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -233,7 +233,7 @@ export default function HomePage() {
                 <span className="text-sm font-bold text-sky-400 uppercase tracking-[0.15em] mb-4 block">
                   Parlons-en
                 </span>
-                <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
+                <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-[1.1] tracking-tight">
                   Un projet en tête ?
                 </h2>
                 <p className="text-zinc-400 text-lg mb-10 max-w-xl mx-auto leading-relaxed">

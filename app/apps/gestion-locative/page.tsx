@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import FeatureGrid from '../../../components/FeatureGrid';
+import ScrollReveal, { StaggerContainer, StaggerItem } from '../../../components/ScrollReveal';
 import LegalLinks from '../../../components/LegalLinks';
 import {
   FaKey,
@@ -71,11 +72,11 @@ const PLANS = [
   {
     name: '1er bail',
     price: 'Gratuit',
-    desc: 'Testez la qualité d\'un bail conforme, sans engagement.',
+    desc: "Testez la qualité d'un bail conforme, sans engagement.",
     highlight: false,
   },
   {
-    name: 'Bail à l\'unité',
+    name: "Bail à l'unité",
     price: '14,99 €',
     desc: '1 crédit = 1 nouveau bail PDF (nouveau bien ou nouveau locataire).',
     highlight: false,
@@ -119,8 +120,9 @@ export default function GestionLocativePage() {
             </p>
             <p className="text-slate-300 leading-relaxed mb-8">
               Centralisez la gestion juridique, financière et administrative de vos biens. Générez
-              des baux conformes, réalisez vos états des lieux, éditez vos quittances et suivez votre
-              rentabilité — le tout depuis votre mobile, avec un espace dédié pour vos locataires.
+              des baux conformes, réalisez vos états des lieux, éditez vos quittances et suivez
+              votre rentabilité — le tout depuis votre mobile, avec un espace dédié pour vos
+              locataires.
             </p>
             <div className="flex gap-3 flex-wrap mb-6">
               {['Android', 'iOS bientôt'].map((p) => (
@@ -162,13 +164,15 @@ export default function GestionLocativePage() {
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-12">
+          <ScrollReveal className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-3">Fonctionnalités clés</h2>
             <p className="text-slate-400">
               Toute la gestion locative d&apos;un bailleur indépendant, sans tableur ni paperasse
             </p>
-          </div>
-          <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -194,36 +198,37 @@ export default function GestionLocativePage() {
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-12">
+          <ScrollReveal className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-3">Tarifs</h2>
             <p className="text-slate-400">
               On fait payer l&apos;acte juridique à forte valeur (le bail) — le quotidien reste
               gratuit
             </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          </ScrollReveal>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {PLANS.map((plan) => (
-              <div
-                key={plan.name}
-                className={`rounded-3xl p-7 border transition-all hover:scale-[1.02] ${
-                  plan.highlight
-                    ? 'bg-brand-600 border-brand-400 text-white shadow-xl shadow-brand-500/20'
-                    : 'bg-white/5 backdrop-blur-md border-white/10 text-white'
-                }`}
-              >
-                {plan.highlight && (
-                  <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    Populaire
-                  </span>
-                )}
-                <h3 className="text-xl font-bold mb-2 text-white">{plan.name}</h3>
-                <div className="text-2xl font-extrabold mb-4 text-white">{plan.price}</div>
-                <p className={`text-sm ${plan.highlight ? 'text-brand-100' : 'text-slate-400'}`}>
-                  {plan.desc}
-                </p>
-              </div>
+              <StaggerItem key={plan.name} className="h-full">
+                <div
+                  className={`h-full rounded-3xl p-7 border transition-transform duration-200 hover:scale-[1.02] ${
+                    plan.highlight
+                      ? 'bg-brand-600 border-brand-400 text-white shadow-xl shadow-brand-500/20'
+                      : 'bg-white/5 backdrop-blur-md border-white/10 text-white'
+                  }`}
+                >
+                  {plan.highlight && (
+                    <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                      Populaire
+                    </span>
+                  )}
+                  <h3 className="text-xl font-bold mb-2 text-white">{plan.name}</h3>
+                  <div className="text-2xl font-extrabold mb-4 text-white">{plan.price}</div>
+                  <p className={`text-sm ${plan.highlight ? 'text-brand-100' : 'text-slate-400'}`}>
+                    {plan.desc}
+                  </p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
           <p className="text-center text-slate-400 text-sm mt-8">
             Achats intégrés sécurisés via Google Play. Les quittances, le suivi des loyers, les
             incidents, l&apos;espace locataire et l&apos;EDL restent gratuits.
@@ -235,11 +240,11 @@ export default function GestionLocativePage() {
         app="gestion-locative"
         descriptions={{
           mentions:
-            "Éditeur, hébergement (Firebase, fonctions en UE), avertissement sur les documents générés et les indications fiscales, propriété intellectuelle des modèles.",
+            'Éditeur, hébergement (Firebase, fonctions en UE), avertissement sur les documents générés et les indications fiscales, propriété intellectuelle des modèles.',
           privacy:
             'Données de compte, biens, locataires et documents, rôle de sous-traitant pour les données de vos locataires, sous-traitants et droits RGPD.',
           terms:
-            "Relecture des documents avant signature, compte, obligations envers vos locataires, achats (pas encore ouverts), usage autorisé et responsabilité.",
+            'Relecture des documents avant signature, compte, obligations envers vos locataires, achats (pas encore ouverts), usage autorisé et responsabilité.',
         }}
         note={
           <>

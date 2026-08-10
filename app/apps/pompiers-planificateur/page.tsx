@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import FeatureGrid from '../../../components/FeatureGrid';
 import LightboxImage from '../../../components/LightboxImage';
+import ScrollReveal, { StaggerContainer, StaggerItem } from '../../../components/ScrollReveal';
 import { FaAmbulance, FaUsers, FaCalendarAlt, FaCog, FaFilePdf, FaLock } from 'react-icons/fa';
 
 export const metadata = {
@@ -25,7 +26,7 @@ const FEATURES = [
     icon: FaUsers, // Icône de groupe d'utilisateurs
     title: 'Gestion du personnel',
     description:
-      'Gestion complète des agents, avec attribution des grades (Sapeur à Commandant) et de 21 qualifications (CA_TE, COD3, SUAP, INC, etc.). Indisponibilités datées et gardes de référence pour les arrivées en cours d\'année.',
+      "Gestion complète des agents, avec attribution des grades (Sapeur à Commandant) et de 21 qualifications (CA_TE, COD3, SUAP, INC, etc.). Indisponibilités datées et gardes de référence pour les arrivées en cours d'année.",
   },
   {
     icon: FaAmbulance, // Icône d'ambulance
@@ -79,7 +80,8 @@ export default function PompiersPlanificateurPage() {
               Planificateur de Garde Sapeurs-Pompiers — Logiciel de planning pour centres de secours
             </h1>
             <p className="text-xl text-slate-400 mb-6 font-medium">
-              Génération automatique de plannings d&apos;affectation avec gestion des qualifications et exports PDF
+              Génération automatique de plannings d&apos;affectation avec gestion des qualifications
+              et exports PDF
             </p>
             <p className="text-slate-300 leading-relaxed mb-8">
               Générez automatiquement le planning d'affectation de votre personnel sur les engins.
@@ -107,7 +109,7 @@ export default function PompiersPlanificateurPage() {
                 href="/guide-planning-gardes-sp.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/15 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                className="btn-secondary inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/15 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
               >
                 <FaFilePdf aria-hidden="true" />
                 Guide utilisateur (PDF)
@@ -133,7 +135,7 @@ export default function PompiersPlanificateurPage() {
       {/* Galerie workflow en 5 phases */}
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-10">
+          <ScrollReveal className="text-center mb-10">
             <span className="text-sm font-bold text-orange-400 uppercase tracking-[0.15em] mb-3 block">
               Le logiciel en action
             </span>
@@ -142,33 +144,62 @@ export default function PompiersPlanificateurPage() {
               Deux écrans complètent le parcours : l&apos;Historique, qui montre la répartition des
               gardes par agent sur 16 semaines, et les Paramètres.
             </p>
-          </div>
-          <div className="space-y-6">
+          </ScrollReveal>
+          <StaggerContainer className="space-y-6">
             {[
-              { src: '/screenshots/pompiers-planificateur/phase1-personnel.png', phase: '01', label: 'Personnel', desc: 'Saisie des agents, grades et qualifications' },
-              { src: '/screenshots/pompiers-planificateur/phase2-vehicules.png', phase: '02', label: 'Véhicules & Postes', desc: 'Définition des engins et postes requis (VSAV, VTU, FPTHR…)' },
-              { src: '/screenshots/pompiers-planificateur/phase3-cadre-temporel.png', phase: '03', label: 'Cadre Temporel', desc: 'Sélection des créneaux jour/nuit sur le calendrier' },
-              { src: '/screenshots/pompiers-planificateur/phase4-constitution-equipe.jpg', phase: '04', label: 'Constitution Équipe', desc: 'Sélection des agents pour la période de garde' },
-              { src: '/screenshots/pompiers-planificateur/phase5-generation-pdf.jpg', phase: '05', label: 'Génération PDF', desc: 'Calcul de la rotation et export du planning final' },
+              {
+                src: '/screenshots/pompiers-planificateur/phase1-personnel.png',
+                phase: '01',
+                label: 'Personnel',
+                desc: 'Saisie des agents, grades et qualifications',
+              },
+              {
+                src: '/screenshots/pompiers-planificateur/phase2-vehicules.png',
+                phase: '02',
+                label: 'Véhicules & Postes',
+                desc: 'Définition des engins et postes requis (VSAV, VTU, FPTHR…)',
+              },
+              {
+                src: '/screenshots/pompiers-planificateur/phase3-cadre-temporel.png',
+                phase: '03',
+                label: 'Cadre Temporel',
+                desc: 'Sélection des créneaux jour/nuit sur le calendrier',
+              },
+              {
+                src: '/screenshots/pompiers-planificateur/phase4-constitution-equipe.jpg',
+                phase: '04',
+                label: 'Constitution Équipe',
+                desc: 'Sélection des agents pour la période de garde',
+              },
+              {
+                src: '/screenshots/pompiers-planificateur/phase5-generation-pdf.jpg',
+                phase: '05',
+                label: 'Génération PDF',
+                desc: 'Calcul de la rotation et export du planning final',
+              },
             ].map(({ src, phase, label, desc }) => (
-              <div key={phase} className="group flex flex-col sm:flex-row gap-5 items-start bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 hover:border-white/20 hover:bg-white/[0.06] transition-all duration-300">
-                <div className="shrink-0 flex items-center gap-4 sm:w-52">
-                  <span className="text-4xl font-black text-white/10 group-hover:text-orange-500/40 transition-colors leading-none">{phase}</span>
-                  <div>
-                    <p className="font-bold text-white text-sm">{label}</p>
-                    <p className="text-zinc-500 text-xs mt-0.5">{desc}</p>
+              <StaggerItem key={phase} variant="left">
+                <div className="group flex flex-col sm:flex-row gap-5 items-start bg-white/[0.03] border border-white/[0.08] rounded-2xl p-5 hover:border-white/20 hover:bg-white/[0.06] transition-colors duration-300">
+                  <div className="shrink-0 flex items-center gap-4 sm:w-52">
+                    <span className="text-4xl font-black text-white/10 group-hover:text-orange-500/40 transition-colors leading-none">
+                      {phase}
+                    </span>
+                    <div>
+                      <p className="font-bold text-white text-sm">{label}</p>
+                      <p className="text-zinc-500 text-xs mt-0.5">{desc}</p>
+                    </div>
                   </div>
+                  <LightboxImage
+                    src={src}
+                    alt={`Planning Pompier — ${label}`}
+                    width={900}
+                    height={550}
+                    className="rounded-lg border border-white/10 shadow-lg w-full h-auto"
+                  />
                 </div>
-                <LightboxImage
-                  src={src}
-                  alt={`Planning Pompier — ${label}`}
-                  width={900}
-                  height={550}
-                  className="rounded-lg border border-white/10 shadow-lg w-full h-auto"
-                />
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -176,15 +207,15 @@ export default function PompiersPlanificateurPage() {
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-3">
-              Fonctionnalités du Planificateur
-            </h2>
+          <ScrollReveal className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-3">Fonctionnalités du Planificateur</h2>
             <p className="text-slate-400">
               Conçu spécifiquement pour les contraintes opérationnelles des centres de secours
             </p>
-          </div>
-          <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -197,9 +228,7 @@ export default function PompiersPlanificateurPage() {
 
           <div className="space-y-8">
             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
-              <h3 className="text-xl font-bold text-white mb-4">
-                Règles d'affectation strictes
-              </h3>
+              <h3 className="text-xl font-bold text-white mb-4">Règles d'affectation strictes</h3>
               <ul className="list-disc list-inside text-slate-300 space-y-2 ml-4">
                 <li>
                   <strong>Hiérarchie des qualifications :</strong> Une qualification supérieure (ex:
@@ -229,9 +258,7 @@ export default function PompiersPlanificateurPage() {
             </div>
 
             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
-              <h3 className="text-xl font-bold text-white mb-4">
-                Architecture & Stack Technique
-              </h3>
+              <h3 className="text-xl font-bold text-white mb-4">Architecture & Stack Technique</h3>
               <p className="text-slate-300 mb-4">
                 Développé par Vincent Morvezen, l'application s'appuie sur une stack moderne et
                 performante :

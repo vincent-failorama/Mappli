@@ -1,7 +1,16 @@
 import Link from 'next/link';
 import FeatureGrid from '../../../components/FeatureGrid';
+import ScrollReveal, { StaggerContainer, StaggerItem } from '../../../components/ScrollReveal';
 import LegalLinks from '../../../components/LegalLinks';
-import { FaFutbol, FaSearch, FaFilePdf, FaExclamationTriangle, FaGlobe, FaBell, FaUsers } from 'react-icons/fa';
+import {
+  FaFutbol,
+  FaSearch,
+  FaFilePdf,
+  FaExclamationTriangle,
+  FaGlobe,
+  FaBell,
+  FaUsers,
+} from 'react-icons/fa';
 
 export const metadata = {
   title: 'Sports Controls — Contrôle des équipements sportifs',
@@ -157,13 +166,15 @@ export default function SportsControlsPage() {
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-12">
+          <ScrollReveal className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-3">Fonctionnalités clés</h2>
             <p className="text-slate-400">
               Tout ce dont vos équipes ont besoin sur le terrain et au bureau
             </p>
-          </div>
-          <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -189,53 +200,54 @@ export default function SportsControlsPage() {
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-12">
+          <ScrollReveal className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-3">Plans tarifaires</h2>
             <p className="text-slate-400">Essai gratuit 3 mois — sans engagement</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          </ScrollReveal>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {PLANS.map((plan) => (
-              <div
-                key={plan.name}
-                className={`rounded-3xl p-7 border transition-all hover:scale-[1.02] ${
-                  plan.highlight
-                    ? 'bg-brand-600 border-brand-400 text-white shadow-xl shadow-brand-500/20'
-                    : 'bg-white/5 backdrop-blur-md border-white/10 text-white'
-                }`}
-              >
-                {plan.highlight && (
-                  <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
-                    Populaire
-                  </span>
-                )}
-                <h3
-                  className={`text-xl font-bold mb-2 ${plan.highlight ? 'text-white' : 'text-white'}`}
-                >
-                  {plan.name}
-                </h3>
-                <p
-                  className={`text-sm mb-6 ${plan.highlight ? 'text-brand-100' : 'text-slate-400'}`}
-                >
-                  {plan.desc}
-                </p>
+              <StaggerItem key={plan.name} className="h-full">
                 <div
-                  className={`text-2xl font-extrabold mb-6 ${plan.highlight ? 'text-white' : 'text-slate-900'}`}
-                >
-                  {plan.price}
-                </div>
-                <a
-                  href="/contact?sujet=Sports+Controls"
-                  className={`block text-center py-2.5 rounded-xl font-semibold text-sm transition-colors ${
+                  className={`h-full rounded-3xl p-7 border transition-transform duration-200 hover:scale-[1.02] ${
                     plan.highlight
-                      ? 'bg-white text-brand-700 hover:bg-brand-50'
-                      : 'border border-white/20 text-white hover:bg-white/10'
+                      ? 'bg-brand-600 border-brand-400 text-white shadow-xl shadow-brand-500/20'
+                      : 'bg-white/5 backdrop-blur-md border-white/10 text-white'
                   }`}
                 >
-                  Nous contacter
-                </a>
-              </div>
+                  {plan.highlight && (
+                    <span className="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                      Populaire
+                    </span>
+                  )}
+                  <h3
+                    className={`text-xl font-bold mb-2 ${plan.highlight ? 'text-white' : 'text-white'}`}
+                  >
+                    {plan.name}
+                  </h3>
+                  <p
+                    className={`text-sm mb-6 ${plan.highlight ? 'text-brand-100' : 'text-slate-400'}`}
+                  >
+                    {plan.desc}
+                  </p>
+                  <div
+                    className={`text-2xl font-extrabold mb-6 ${plan.highlight ? 'text-white' : 'text-slate-900'}`}
+                  >
+                    {plan.price}
+                  </div>
+                  <a
+                    href="/contact?sujet=Sports+Controls"
+                    className={`block text-center py-2.5 rounded-xl font-semibold text-sm transition-colors ${
+                      plan.highlight
+                        ? 'bg-white text-brand-700 hover:bg-brand-50'
+                        : 'border border-white/20 text-white hover:bg-white/10'
+                    }`}
+                  >
+                    Nous contacter
+                  </a>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
           <p className="text-center text-slate-400 text-sm mt-8">
             Essai gratuit 3 mois · Option catégorie supplémentaire : +90 €/an (Liberté &amp;
             Essentiel) ·{' '}
@@ -258,8 +270,8 @@ export default function SportsControlsPage() {
         }}
         note={
           <>
-            Aucun paiement n&apos;est traité par l&apos;application : les modalités d&apos;accès sont
-            convenues directement avec l&apos;éditeur, et des conditions générales de vente
+            Aucun paiement n&apos;est traité par l&apos;application : les modalités d&apos;accès
+            sont convenues directement avec l&apos;éditeur, et des conditions générales de vente
             distinctes seront publiées avant toute facturation.
           </>
         }

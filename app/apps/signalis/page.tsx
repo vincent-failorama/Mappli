@@ -1,6 +1,15 @@
 import Link from 'next/link';
 import FeatureGrid from '../../../components/FeatureGrid';
-import { FaBuilding, FaMobileAlt, FaChartBar, FaHardHat, FaMoon, FaTractor, FaPlug } from 'react-icons/fa';
+import ScrollReveal, { StaggerContainer, StaggerItem } from '../../../components/ScrollReveal';
+import {
+  FaBuilding,
+  FaMobileAlt,
+  FaChartBar,
+  FaHardHat,
+  FaMoon,
+  FaTractor,
+  FaPlug,
+} from 'react-icons/fa';
 
 export const metadata = {
   title: 'Signalis — Gestion des signalements pour les communes',
@@ -100,7 +109,7 @@ const FEATURES = [
     icon: FaMobileAlt, // Icône de téléphone mobile
     title: 'Signalements citoyens',
     description:
-      'Formulaire public sans compte, carte interactive, suivi par email, géolocalisation. Le citoyen suit l\'avancement de sa demande en temps réel.',
+      "Formulaire public sans compte, carte interactive, suivi par email, géolocalisation. Le citoyen suit l'avancement de sa demande en temps réel.",
   },
   {
     icon: FaChartBar, // Icône de graphique à barres
@@ -118,7 +127,7 @@ const FEATURES = [
     icon: FaMoon, // Icône de lune
     title: 'Module Astreinte',
     description:
-      'Arbre décisionnel pour les urgences nocturnes, checklist d\'intervention, planning interactif sur 12 semaines pour agents et élus.',
+      "Arbre décisionnel pour les urgences nocturnes, checklist d'intervention, planning interactif sur 12 semaines pour agents et élus.",
   },
   {
     icon: FaTractor, // Icône de tracteur
@@ -154,10 +163,14 @@ export default function SignalisPage() {
               Signalis — Logiciel de gestion des signalements pour les communes
             </h1>
             <p className="text-xl text-slate-400 mb-6 font-medium">
-              Plateforme SaaS tout-en-un pour collectivités : signalements citoyens, interventions, GMAO
+              Plateforme SaaS tout-en-un pour collectivités : signalements citoyens, interventions,
+              GMAO
             </p>
             <p className="text-slate-300 leading-relaxed mb-8">
-              Centralisez toute la chaîne de gestion communale : du signalement citoyen jusqu'à l'intervention de l'agent, en passant par le secrétariat, les finances, les RH et la sécurité civile. {MODULE_COUNT} modules activables un par un, données isolées par commune, journal d'audit immuable.
+              Centralisez toute la chaîne de gestion communale : du signalement citoyen jusqu'à
+              l'intervention de l'agent, en passant par le secrétariat, les finances, les RH et la
+              sécurité civile. {MODULE_COUNT} modules activables un par un, données isolées par
+              commune, journal d'audit immuable.
             </p>
             <div className="flex gap-3 flex-wrap mb-6">
               {['Web', 'Mobile', 'SaaS', 'API'].map((p) => (
@@ -201,22 +214,22 @@ export default function SignalisPage() {
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-3">
-              Une solution tout-en-un
-            </h2>
+          <ScrollReveal className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-3">Une solution tout-en-un</h2>
             <p className="text-slate-400">
               Des modules métiers pensés pour le quotidien des agents, élus et citoyens
             </p>
-          </div>
-          <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Catalogue des modules */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
+          <ScrollReveal className="text-center mb-12">
             <span className="text-sm font-bold text-sky-400 uppercase tracking-[0.15em] mb-3 block">
               Catalogue
             </span>
@@ -228,11 +241,13 @@ export default function SignalisPage() {
               RH et sécurité civile. Vous n&apos;activez que ce dont vous avez besoin, et vous
               ajoutez le reste quand vous le voulez.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="space-y-10">
+          {/* Stagger au niveau des familles (4), pas des modules (25) :
+              échelonner 25 cartes étalerait l'entrée sur 2 s. */}
+          <StaggerContainer className="space-y-10">
             {MODULE_FAMILIES.map(({ family, modules }) => (
-              <div key={family}>
+              <StaggerItem key={family}>
                 <h3 className="text-sm font-bold text-sky-400 uppercase tracking-[0.15em] mb-4">
                   {family}
                   <span className="text-slate-500 font-semibold normal-case tracking-normal ml-2">
@@ -250,9 +265,9 @@ export default function SignalisPage() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -266,29 +281,29 @@ export default function SignalisPage() {
 
           <div className="space-y-8">
             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
-              <h3 className="text-xl font-bold text-white mb-4">
-                Points forts de l'architecture
-              </h3>
+              <h3 className="text-xl font-bold text-white mb-4">Points forts de l'architecture</h3>
               <ul className="list-disc list-inside text-slate-300 space-y-2 ml-4">
                 <li>
-                  <strong>Multi-tenant :</strong> Chaque commune dispose de données strictement isolées (Row Level Security).
+                  <strong>Multi-tenant :</strong> Chaque commune dispose de données strictement
+                  isolées (Row Level Security).
                 </li>
                 <li>
-                  <strong>Permissions granulaires (RBAC) :</strong> Matrice de permissions par rôle avec exceptions individuelles.
+                  <strong>Permissions granulaires (RBAC) :</strong> Matrice de permissions par rôle
+                  avec exceptions individuelles.
                 </li>
                 <li>
-                  <strong>Photos optimisées :</strong> Compression côté client avant upload, réduisant les coûts de stockage de 70%.
+                  <strong>Photos optimisées :</strong> Compression côté client avant upload,
+                  réduisant les coûts de stockage de 70%.
                 </li>
                 <li>
-                  <strong>Zéro maintenance :</strong> Hébergement managé sur Vercel et Supabase. Mises à jour transparentes.
+                  <strong>Zéro maintenance :</strong> Hébergement managé sur Vercel et Supabase.
+                  Mises à jour transparentes.
                 </li>
               </ul>
             </div>
 
             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
-              <h3 className="text-xl font-bold text-white mb-4">
-                Stack Technique
-              </h3>
+              <h3 className="text-xl font-bold text-white mb-4">Stack Technique</h3>
               <p className="text-slate-300 mb-4">
                 Une base technologique moderne assurant performance, sécurité et maintenabilité :
               </p>
@@ -314,7 +329,7 @@ export default function SignalisPage() {
                 ))}
               </div>
             </div>
-            
+
             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
               <h3 className="text-xl font-bold text-white mb-4">Packs & tarification</h3>
               <p className="text-slate-300 mb-5">
@@ -351,19 +366,22 @@ export default function SignalisPage() {
 
       {/* CTA final */}
       <section className="max-w-3xl mx-auto px-6 py-20 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">Modernisez votre commune dès aujourd'hui</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">
+          Modernisez votre commune dès aujourd'hui
+        </h2>
         <p className="text-slate-400 mb-8 text-lg">
-          Profitez d'un essai gratuit de 60 jours pour valider la solution avec vos équipes, sans engagement.
+          Profitez d'un essai gratuit de 60 jours pour valider la solution avec vos équipes, sans
+          engagement.
         </p>
         <div className="flex gap-4 justify-center">
-            <a
+          <a
             href="https://signalis.fr"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-block text-white font-bold px-8 py-4 rounded-xl text-lg"
-            >
+          >
             Découvrir signalis.fr →
-            </a>
+          </a>
         </div>
       </section>
 

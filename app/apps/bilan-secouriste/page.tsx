@@ -2,6 +2,7 @@ import Link from 'next/link';
 import FeatureGrid from '../../../components/FeatureGrid';
 import LightboxImage from '../../../components/LightboxImage';
 import LegalLinks from '../../../components/LegalLinks';
+import ScrollReveal, { StaggerContainer, StaggerItem } from '../../../components/ScrollReveal';
 import { FaHeartbeat, FaBolt, FaUsers, FaFilePdf, FaLock, FaBook } from 'react-icons/fa';
 
 export const metadata = {
@@ -81,7 +82,8 @@ export default function BilanSecouristePage() {
               Bilan Secouriste — Application d&apos;aide aux pompiers et secouristes
             </h1>
             <p className="text-xl text-slate-400 mb-6 font-medium">
-              Bilans victimes, protocoles urgences vitales et export PDF SAMU — entièrement hors-ligne
+              Bilans victimes, protocoles urgences vitales et export PDF SAMU — entièrement
+              hors-ligne
             </p>
             <p className="text-slate-300 leading-relaxed mb-8">
               Conçu pour les pompiers, ambulanciers, infirmiers SMUR et secouristes PSE, Bilan
@@ -108,7 +110,7 @@ export default function BilanSecouristePage() {
               </a>
               <a
                 href="#legal"
-                className="border border-white/20 text-slate-300 px-6 py-3 rounded-xl font-semibold hover:border-white/40 transition-colors text-sm flex items-center"
+                className="btn-secondary border border-white/20 text-slate-300 px-6 py-3 rounded-xl font-semibold hover:border-white/40 transition-colors text-sm flex items-center"
               >
                 Informations légales
               </a>
@@ -135,36 +137,52 @@ export default function BilanSecouristePage() {
       {/* Galerie de screenshots */}
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-10">
+          <ScrollReveal className="text-center mb-10">
             <span className="text-sm font-bold text-red-400 uppercase tracking-[0.15em] mb-3 block">
               Aperçu de l&apos;application
             </span>
             <h2 className="text-3xl font-bold text-white">L&apos;interface en situation réelle</h2>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 items-end justify-items-center">
+          </ScrollReveal>
+          <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 items-end justify-items-center">
             {[
-              { src: '/screenshots/bilan-secouriste/Screenshot_1778942733.png', alt: 'Constantes & Identité' },
-              { src: '/screenshots/bilan-secouriste/Screenshot_1778942201.png', alt: 'Bilan neurologique — Glasgow & AVC' },
-              { src: '/screenshots/bilan-secouriste/Screenshot_1778942154.png', alt: 'Écran principal' },
-              { src: '/screenshots/bilan-secouriste/Screenshot_1778942246.png', alt: 'Douleur thoracique — HEART score' },
-              { src: '/screenshots/bilan-secouriste/Screenshot_1778942303.png', alt: 'Brûlures — règle des 9' },
+              {
+                src: '/screenshots/bilan-secouriste/Screenshot_1778942733.png',
+                alt: 'Constantes & Identité',
+              },
+              {
+                src: '/screenshots/bilan-secouriste/Screenshot_1778942201.png',
+                alt: 'Bilan neurologique — Glasgow & AVC',
+              },
+              {
+                src: '/screenshots/bilan-secouriste/Screenshot_1778942154.png',
+                alt: 'Écran principal',
+              },
+              {
+                src: '/screenshots/bilan-secouriste/Screenshot_1778942246.png',
+                alt: 'Douleur thoracique — HEART score',
+              },
+              {
+                src: '/screenshots/bilan-secouriste/Screenshot_1778942303.png',
+                alt: 'Brûlures — règle des 9',
+              },
             ].map(({ src, alt }, i) => (
-              <div
-                key={i}
-                className={`relative group ${i === 2 ? 'col-span-1 scale-110 z-10' : ''}`}
-              >
-                <div className="absolute inset-0 bg-red-500/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                <LightboxImage
-                  src={src}
-                  alt={alt}
-                  width={200}
-                  height={400}
-                  className="rounded-[2rem] border border-white/10 shadow-xl w-full h-auto transition-transform duration-300 group-hover:-translate-y-2"
-                />
-                <p className="text-center text-xs text-slate-500 mt-2 px-1">{alt}</p>
-              </div>
+              // `col-span`/`z-10` doivent rester sur l'enfant de grille ; `scale-110`
+              // reste à l'intérieur, sinon le transform inline de Framer l'écrase.
+              <StaggerItem key={i} className={i === 2 ? 'col-span-1 z-10' : ''}>
+                <div className={`relative group ${i === 2 ? 'scale-110' : ''}`}>
+                  <div className="absolute inset-0 bg-red-500/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                  <LightboxImage
+                    src={src}
+                    alt={alt}
+                    width={200}
+                    height={400}
+                    className="rounded-[2rem] border border-white/10 shadow-xl w-full h-auto transition-transform duration-300 group-hover:-translate-y-2"
+                  />
+                  <p className="text-center text-xs text-slate-500 mt-2 px-1">{alt}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -172,15 +190,17 @@ export default function BilanSecouristePage() {
       <section className="py-20 relative">
         <div className="absolute inset-0 bg-white/5 backdrop-blur-xl border-y border-white/5" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-12">
+          <ScrollReveal className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-3">
               Fonctionnalités de Bilan Secouriste
             </h2>
             <p className="text-slate-400">
               Conçu pour le terrain, optimisé pour les situations de stress
             </p>
-          </div>
-          <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
+          <ScrollReveal delay={80}>
+            <FeatureGrid features={FEATURES} />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -193,9 +213,7 @@ export default function BilanSecouristePage() {
 
           <div className="space-y-8">
             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
-              <h3 className="text-xl font-bold text-white mb-4">
-                Outils spécialisés
-              </h3>
+              <h3 className="text-xl font-bold text-white mb-4">Outils spécialisés</h3>
               <ul className="list-disc list-inside text-slate-300 space-y-2 ml-4">
                 <li>
                   <strong>Géolocalisation GPS :</strong> adresse et coordonnées automatiques pour la
@@ -249,9 +267,9 @@ export default function BilanSecouristePage() {
             <div className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-xl">
               <h3 className="text-xl font-bold text-white mb-4">Confidentialité & données</h3>
               <p className="text-slate-300 mb-3">
-                Toutes les données (bilans, constantes, photos) sont stockées <strong>uniquement sur
-                l'appareil</strong> via AsyncStorage. Aucun serveur, aucun tracker, aucune connexion
-                réseau.
+                Toutes les données (bilans, constantes, photos) sont stockées{' '}
+                <strong>uniquement sur l'appareil</strong> via AsyncStorage. Aucun serveur, aucun
+                tracker, aucune connexion réseau.
               </p>
               <ul className="list-disc list-inside text-slate-300 space-y-2 ml-4">
                 <li>Zéro collecte de données personnelles</li>
