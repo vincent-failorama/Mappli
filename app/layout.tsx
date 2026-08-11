@@ -45,21 +45,15 @@ export const metadata: Metadata = {
     title: 'MAPPLI — Applications mobiles & web sur mesure',
     description:
       'MAPPLI conçoit des applications mobiles et web sur mesure pour les professionnels et équipes terrain.',
-    images: [
-      {
-        url: '/og-image.jpg', // Prévoyez de placer une image og-image.jpg dans votre dossier public/
-        width: 1200,
-        height: 630,
-        alt: "MAPPLI - Développement d'applications",
-      },
-    ],
+    // L'image est générée par app/opengraph-image.tsx et injectée automatiquement :
+    // la déclarer ici l'écraserait.
   },
   twitter: {
     card: 'summary_large_image',
     title: 'MAPPLI — Applications mobiles & web sur mesure',
     description:
       'MAPPLI conçoit des applications mobiles et web sur mesure pour les professionnels et équipes terrain.',
-    images: ['/og-image.jpg'],
+    // Idem : app/twitter-image.tsx fournit le visuel.
   },
   robots: {
     index: true,
