@@ -83,8 +83,8 @@ export default function ConditionsVenteIteroPage() {
 
         <Section title="9. Réclamation et médiation">
           <p>Toute réclamation doit être adressée à contact@mappli.fr. Le compte pouvant être anonyme, joignez l&rsquo;identifiant technique affiché en bas de l&rsquo;écran des informations légales : sans lui, votre achat ne peut pas être retrouvé.</p>
-          <p>À défaut de solution amiable, le consommateur peut recourir gratuitement à un médiateur de la consommation. Les coordonnées du médiateur retenu seront indiquées ici avant la mise en vente effective.</p>
-          <p>La plateforme européenne de règlement en ligne des litiges est accessible à l&rsquo;adresse ec.europa.eu/consumers/odr.</p>
+          <p>À défaut de solution amiable, le consommateur peut recourir gratuitement à un médiateur de la consommation, conformément à l&rsquo;article L. 612-1 du code de la consommation. Les coordonnées du médiateur retenu seront indiquées ici avant la mise en vente effective.</p>
+          <p>Le recours au médiateur est gratuit pour le consommateur et n&rsquo;exclut pas la saisine des tribunaux compétents.</p>
         </Section>
 
         <Section title="10. Droit applicable">
