@@ -446,7 +446,10 @@ export const LEGAL_DOCS = {
  */
 export const LEGAL_LINKS: Record<
   keyof typeof LEGAL_DOCS | 'itero',
-  { mentions: string; privacy: string; terms: string }
+  // `sales` (CGV) est OPTIONNEL : seule Itero.ai vend quelque chose. Les CGU régissent
+  // l'usage, les CGV la vente — deux documents distincts, dus dès qu'un consommateur
+  // peut payer et consultables AVANT le paiement, donc depuis le web.
+  { mentions: string; privacy: string; terms: string; sales?: string }
 > = {
   'bilan-secouriste': {
     mentions: '/bilan-secouriste/mentions-legales',
@@ -467,5 +470,6 @@ export const LEGAL_LINKS: Record<
     mentions: '/itero/mentions-legales',
     privacy: '/itero/privacy',
     terms: '/itero/cgu',
+    sales: '/itero/cgv',
   },
 };

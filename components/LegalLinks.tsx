@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaBalanceScale, FaUserShield, FaFileContract } from 'react-icons/fa';
+import { FaBalanceScale, FaUserShield, FaFileContract, FaFileInvoiceDollar } from 'react-icons/fa';
 import { LEGAL_LINKS } from '../app/data/legalDocs';
 
 /**
@@ -14,7 +14,7 @@ import { LEGAL_LINKS } from '../app/data/legalDocs';
 interface LegalLinksProps {
   app: keyof typeof LEGAL_LINKS;
   /** Descriptions courtes, propres à l'app : ce que le lecteur trouvera dans chaque document. */
-  descriptions: { mentions: string; privacy: string; terms: string };
+  descriptions: { mentions: string; privacy: string; terms: string; sales?: string };
   /** Phrase de contexte sous les cartes (achats à venir, version faisant foi…). */
   note?: React.ReactNode;
 }
@@ -42,6 +42,20 @@ export default function LegalLinks({ app, descriptions, note }: LegalLinksProps)
     },
   ];
 
+  // CGV : uniquement pour une app qui VEND. Ajoutée seulement si la route et la
+  // description existent toutes les deux — une carte sans texte serait pire qu'absente.
+  if (href.sales && descriptions.sales) {
+    docs.push({
+      href: href.sales,
+      icon: FaFileInvoiceDollar,
+      title: 'Conditions de vente',
+      desc: descriptions.sales,
+    });
+  }
+
+  // À quatre documents, `md:grid-cols-3` laisserait une carte orpheline sur sa ligne.
+  const gridCols = docs.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3';
+
   return (
     <section id="legal" className="scroll-mt-24 py-20">
       <div className="max-w-4xl mx-auto px-6">
@@ -51,11 +65,11 @@ export default function LegalLinks({ app, descriptions, note }: LegalLinksProps)
           </span>
           <h2 className="text-3xl font-bold text-white mb-3">Informations légales</h2>
           <p className="text-slate-400 max-w-2xl mx-auto">
-            Les trois documents applicables à l&apos;application, dans leur version en vigueur. Ce
-            sont les URL publiques référencées sur les fiches Google Play et App Store.
+            Les documents applicables à l&apos;application, dans leur version en vigueur. Ce sont
+            les URL publiques référencées sur les fiches Google Play et App Store.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className={`grid grid-cols-1 ${gridCols} gap-6`}>
           {docs.map(({ href: to, icon: Icon, title, desc }) => (
             <Link
               key={to}

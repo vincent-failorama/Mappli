@@ -44,7 +44,7 @@ export default function PolitiqueConfidentialiteIteroPage() {
         </Section>
 
         <Section title="2. Le principe">
-          <p>Itero.ai fonctionne sans compte : ni nom, ni adresse email, ni mot de passe ne vous sont demandés. Aucune donnée n&rsquo;est vendue, louée ou transmise à des fins publicitaires. Aucun traceur publicitaire ni outil de mesure d&rsquo;audience tiers n&rsquo;est intégré.</p>
+          <p>Itero.ai fonctionne sans compte : ni nom, ni adresse email, ni mot de passe ne vous sont demandés pour l&rsquo;utiliser. Vous pouvez, si vous le souhaitez uniquement, rattacher une adresse email à votre compte afin de conserver vos exports achetés en cas de changement de téléphone ; c&rsquo;est facultatif et vous pouvez ne jamais le faire. Aucune donnée n&rsquo;est vendue, louée ou transmise à des fins publicitaires. Aucun traceur publicitaire ni outil de mesure d&rsquo;audience tiers n&rsquo;est intégré.</p>
         </Section>
 
         <Section title="3. Données traitées">
@@ -52,6 +52,7 @@ export default function PolitiqueConfidentialiteIteroPage() {
           <ul className="list-disc list-inside space-y-2">
             <li>Identifiant technique anonyme : à la première ouverture, un identifiant est généré automatiquement (connexion anonyme Firebase). Il ne contient aucune information sur vous et sert uniquement à rattacher vos quotas d&rsquo;usage à votre appareil.</li>
             <li>Informations de votre formulaire de voyage : destination, dates, composition du groupe (nombre d&rsquo;adultes et d&rsquo;enfants, âge des enfants), style de voyage, budget, véhicule, activités souhaitées, contraintes et nationalité si vous la renseignez. Elles sont transmises à un fournisseur de modèle d&rsquo;IA pour produire le guide.</li>
+            <li>Adresse email et mot de passe, UNIQUEMENT si vous choisissez de rattacher votre compte : l&rsquo;adresse sert exclusivement à retrouver vos exports sur un autre appareil. Elle n&rsquo;est utilisée pour aucun envoi commercial. Le mot de passe n&rsquo;est jamais accessible en clair : il est géré par Firebase Authentication, qui n&rsquo;en conserve qu&rsquo;une empreinte chiffrée.</li>
             <li>Compteurs d&rsquo;usage : nombre de guides générés dans le mois, exports restants, nombre de ré-optimisations. Ils servent à faire respecter les quotas et à prévenir les abus.</li>
             <li>Statistiques techniques : modèle utilisé, langue du contenu, nombre de jetons consommés et coût estimé. Elles sont enregistrées SANS identifiant utilisateur et ne permettent pas de vous réidentifier.</li>
           </ul>
@@ -84,6 +85,7 @@ export default function PolitiqueConfidentialiteIteroPage() {
             <li>Guides et PDF : sur votre appareil, jusqu&rsquo;à ce que vous les supprimiez.</li>
             <li>Compteurs d&rsquo;usage : conservés tant que l&rsquo;application est utilisée.</li>
             <li>Cache technique du contenu généré : conservé pour éviter de regénérer un contenu identique. Il n&rsquo;est pas rattaché à votre identifiant.</li>
+            <li>Adresse email de rattachement, si vous en avez renseigné une : conservée tant que le compte existe, et supprimée avec lui sur simple demande de votre part.</li>
           </ul>
         </Section>
 

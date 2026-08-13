@@ -88,6 +88,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.2,
     },
+    {
+      url: `${BASE_URL}/itero/cgv`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
     // Mentions légales + CGU des apps distribuées sur les stores (hors Signalis et
     // Planificateur de Garde, qui n'y sont pas publiés).
     ...[

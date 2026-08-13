@@ -63,7 +63,7 @@ export default function ConditionsUtilisationIteroPage() {
         </Section>
 
         <Section title="6. Achats">
-          <p>Les packs d&rsquo;exports payants ne sont pas encore disponibles. Des conditions générales de vente distinctes (prix, exécution, droit de rétractation, remboursement, médiation de la consommation) seront publiées et portées à votre connaissance avant tout paiement.</p>
+          <p>Les packs d&rsquo;exports payants ne sont pas encore disponibles à la vente. Les conditions générales de vente qui les régiront (prix, exécution, droit de rétractation, remboursement, médiation de la consommation) figurent ci-après et vous seront rappelées avant tout paiement.</p>
         </Section>
 
         <Section title="7. Usage autorisé">

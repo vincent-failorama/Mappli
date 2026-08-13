@@ -347,13 +347,15 @@ export default function IteroPage() {
             "Données traitées, sous-traitants, transferts hors UE, durées de conservation et exercice de vos droits RGPD. C'est l'URL déclarée dans la fiche Play Store.",
           terms:
             'Objet, avertissement sur la fiabilité des guides générés, quotas, exports offerts, usage autorisé, disponibilité, responsabilité et droit applicable.',
+          sales:
+            'Packs de crédits d’export, prix, commande et paiement, livraison, droit de rétractation, remboursement, garanties légales et médiation de la consommation.',
         }}
         note={
           <>
             La version française fait foi. Les mêmes textes sont consultables dans
             l&apos;application, écran «&nbsp;Informations légales&nbsp;», y compris hors connexion.
-            Des conditions générales de vente distinctes seront publiées avant l&apos;ouverture des
-            achats.
+            Les achats ne sont pas encore ouverts : les conditions de vente sont publiées à
+            l&apos;avance, afin d&apos;être consultables avant tout paiement.
           </>
         }
       />
