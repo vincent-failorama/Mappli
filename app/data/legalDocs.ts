@@ -98,7 +98,7 @@ const bilanSecouristeMentions: LegalDocument = {
       body: [
         "Application à usage pédagogique et d'aide opérationnelle. Elle ne remplace ni les protocoles officiels, ni la formation, ni le jugement du secouriste. Les arbres de décision s'inspirent des protocoles du SDIS 44 (Loire-Atlantique) et n'engagent pas ce service.",
         "L'application n'est pas un dispositif médical au sens du règlement (UE) 2017/745 : elle ne pose aucun diagnostic et ne délivre aucune prescription.",
-        "Les bases de référence embarquées (médicaments, pathologies, toxicologie, scores) sont fournies à titre indicatif et peuvent être incomplètes ou périmées. Elles ne se substituent pas aux sources officielles ni aux protocoles de votre service.",
+        'Les bases de référence embarquées (médicaments, pathologies, toxicologie, scores) sont fournies à titre indicatif et peuvent être incomplètes ou périmées. Elles ne se substituent pas aux sources officielles ni aux protocoles de votre service.',
       ],
     },
     {
@@ -206,7 +206,7 @@ const gestionLocativeMentions: LegalDocument = {
     {
       heading: '3. Hébergement',
       body: [
-        'Les données de l\'application (comptes, biens, documents, photos) sont hébergées et traitées via Google Firebase / Google Cloud Platform. Les fonctions serveur sont situées dans l\'Union européenne (europe-west1). Certains services Google peuvent impliquer des transferts hors UE, encadrés par des clauses contractuelles types.',
+        "Les données de l'application (comptes, biens, documents, photos) sont hébergées et traitées via Google Firebase / Google Cloud Platform. Les fonctions serveur sont situées dans l'Union européenne (europe-west1). Certains services Google peuvent impliquer des transferts hors UE, encadrés par des clauses contractuelles types.",
         'Cette page est publiée sur le site mappli.fr, hébergé par Vercel Inc. (340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis).',
       ],
     },
@@ -257,8 +257,8 @@ const gestionLocativeTerms: LegalDocument = {
     {
       heading: '2. Avertissement sur les documents produits',
       body: [
-        "Les baux, états des lieux, quittances et synthèses fiscales sont générés automatiquement à partir de modèles et de vos saisies. Ils ne constituent ni un conseil juridique, ni un conseil fiscal, et leur exactitude dépend directement des informations que vous renseignez.",
-        "Vous devez relire chaque document et vérifier sa conformité à la réglementation en vigueur avant de le signer ou de le remettre à un locataire. En cas de situation particulière (bail dérogatoire, colocation, logement social, encadrement des loyers), faites-vous accompagner par un professionnel.",
+        'Les baux, états des lieux, quittances et synthèses fiscales sont générés automatiquement à partir de modèles et de vos saisies. Ils ne constituent ni un conseil juridique, ni un conseil fiscal, et leur exactitude dépend directement des informations que vous renseignez.',
+        'Vous devez relire chaque document et vérifier sa conformité à la réglementation en vigueur avant de le signer ou de le remettre à un locataire. En cas de situation particulière (bail dérogatoire, colocation, logement social, encadrement des loyers), faites-vous accompagner par un professionnel.',
       ],
     },
     {
@@ -374,7 +374,7 @@ const sportsControlsTerms: LegalDocument = {
       ],
     },
     {
-      heading: '2. Portée de l\'outil',
+      heading: "2. Portée de l'outil",
       body: [
         "L'application enregistre et restitue les constats saisis par les utilisateurs. Elle ne réalise aucun contrôle par elle-même, n'émet aucun avis de conformité et ne dispense pas des vérifications imposées par la réglementation applicable à l'équipement concerné.",
         "La qualification des anomalies, les décisions de mise hors service et le suivi des remises en état relèvent du gestionnaire de l'équipement.",
@@ -408,7 +408,7 @@ const sportsControlsTerms: LegalDocument = {
       heading: '7. Disponibilité',
       body: [
         "Le service est fourni « en l'état », sans garantie de disponibilité continue. Il dépend de prestataires tiers (Google Firebase, service de notifications) dont l'indisponibilité peut empêcher temporairement l'accès, la synchronisation ou l'envoi d'alertes.",
-        "Certaines fonctions nécessitent une connexion réseau : prévoyez que les inspections réalisées en zone sans couverture puissent devoir être synchronisées ultérieurement.",
+        'Certaines fonctions nécessitent une connexion réseau : prévoyez que les inspections réalisées en zone sans couverture puissent devoir être synchronisées ultérieurement.',
       ],
     },
     {
@@ -433,11 +433,225 @@ const sportsControlsTerms: LegalDocument = {
 };
 
 /* -------------------------------------------------------------------------- */
+/*  Suivi Auto · Moto · Vélo — 100 % local, aucun compte, aucun serveur        */
+/* -------------------------------------------------------------------------- */
+
+/** Rédigés après les autres documents : leur date de mise à jour est distincte. */
+const UPDATED_SUIVI = '18 août 2026';
+
+const suiviAutoMentions: LegalDocument = {
+  app: 'Suivi Auto · Moto · Vélo',
+  title: 'Mentions légales',
+  subtitle: 'Conformément à la loi n° 2004-575 du 21 juin 2004 (LCEN)',
+  updated: UPDATED_SUIVI,
+  sections: [
+    {
+      heading: "1. Éditeur de l'application",
+      bullets: [...EDITEUR_BULLETS, STATUT_EDITEUR],
+    },
+    {
+      heading: '2. Directeur de la publication',
+      body: [`${IDENTITY.editor} — ${IDENTITY.email}`],
+    },
+    {
+      heading: '3. Hébergement des données',
+      body: [
+        "Il n'y en a pas. L'application ne dispose d'aucun serveur : vos véhicules, vos entretiens, vos dépenses, vos documents et vos photos sont enregistrés dans la mémoire de votre téléphone et n'en sortent pas. Aucun compte n'est créé et aucune donnée n'est transmise à l'éditeur ni à un tiers.",
+        "La sauvegarde automatique d'Android est explicitement désactivée dans l'application : son contenu n'est pas remonté vers le service de sauvegarde de Google.",
+        'Seule cette page est publiée sur le site mappli.fr, hébergé par Vercel Inc. (340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis).',
+      ],
+    },
+    {
+      heading: "4. Avertissement sur la portée de l'application",
+      body: [
+        "L'application est un carnet : elle enregistre ce que vous y saisissez et vous rappelle les échéances que vous avez vous-même définies. Elle ne prescrit aucun entretien, ne se substitue ni au carnet du constructeur ni aux préconisations de votre garage, et ne vaut pas justificatif d'entretien auprès d'un tiers.",
+        "Les rappels ne remplacent aucune obligation légale — contrôle technique, assurance, conditions de garantie constructeur — qui restent à votre charge et dont les échéances ne sont pas connues de l'application.",
+      ],
+    },
+    {
+      heading: '5. Données personnelles',
+      body: [
+        "Aucune donnée n'est collectée par l'éditeur. Les traitements réalisés sur votre appareil, ainsi que les permissions demandées, sont décrits dans la politique de confidentialité.",
+      ],
+    },
+    {
+      heading: '6. Propriété intellectuelle',
+      body: [
+        "L'application, son nom et son interface sont la propriété exclusive de l'éditeur, sauf mention contraire. Les données que vous saisissez, les photos que vous ajoutez et les carnets que vous exportez vous appartiennent intégralement.",
+      ],
+    },
+    {
+      heading: '7. Contact',
+      body: [`Pour toute question relative à ces mentions : ${IDENTITY.email}`],
+    },
+  ],
+};
+
+const suiviAutoPrivacy: LegalDocument = {
+  app: 'Suivi Auto · Moto · Vélo',
+  title: 'Politique de confidentialité',
+  subtitle: 'Traitement des données personnelles (RGPD)',
+  updated: UPDATED_SUIVI,
+  sections: [
+    {
+      heading: '1. Responsable du traitement',
+      bullets: [...EDITEUR_BULLETS],
+    },
+    {
+      heading: '2. Le principe',
+      body: [
+        "L'application fonctionne sans compte et sans serveur. Il n'existe aucune base de données côté éditeur : nous ne détenons, ne consultons et ne recevons aucune de vos données. Rien n'est vendu, loué ni transmis à des fins publicitaires, et l'application n'intègre ni régie publicitaire, ni traceur, ni outil de mesure d'audience.",
+        'Concrètement, elle fonctionne en mode avion, du premier au dernier écran.',
+      ],
+    },
+    {
+      heading: '3. Données enregistrées sur votre appareil',
+      body: [
+        "Vous les saisissez, elles restent chez vous. Elles peuvent constituer des données personnelles au sens du RGPD — une plaque d'immatriculation ou un numéro de série identifient un véhicule, donc indirectement son propriétaire — raison pour laquelle elles ne quittent pas le téléphone.",
+      ],
+      bullets: [
+        "Véhicules : type, marque, modèle, année, plaque d'immatriculation, numéro de série, kilométrage, pressions de pneus, photo et notes.",
+        'Entretiens : type, date, kilométrage, coût, prestataire, notes et photos de factures.',
+        'Dépenses : catégorie, date, montant, notes et justificatifs photographiques.',
+        'Pleins et recharges : quantité, prix unitaire, station, kilométrage.',
+        'Échéances : règles de rappel par kilométrage ou par durée.',
+        "Documents : fichiers que vous importez (carte grise, attestation d'assurance, factures, certificats).",
+        "Réglages : devise, unité de distance, seuils d'alerte, dossier de sauvegarde choisi.",
+      ],
+    },
+    {
+      heading: '4. Permissions demandées et ce qui en est fait',
+      bullets: [
+        "Appareil photo et galerie : uniquement lorsque vous ajoutez une photo à un entretien, une dépense ou un véhicule. L'image est recopiée dans l'espace privé de l'application ; aucune autre photo de votre galerie n'est lue.",
+        "Fichiers : uniquement lorsque vous importez un document, désignez un dossier de sauvegarde ou restaurez une sauvegarde. L'accès se limite au fichier ou au dossier que vous avez choisi.",
+        "Notifications : pour vous rappeler une échéance. Elles sont produites localement par votre téléphone ; aucun jeton de notification n'est créé et aucun serveur ne les déclenche.",
+        "Exécution en arrière-plan : une vérification quotidienne relit vos données locales pour repérer une échéance kilométrique dépassée. Elle n'émet aucune connexion réseau.",
+      ],
+    },
+    {
+      heading: '5. Destinataires et sous-traitants',
+      body: [
+        "Aucun. L'application ne communique avec aucun service tiers, ni pour l'hébergement, ni pour l'authentification, ni pour la mesure d'audience, ni pour la publicité. Il n'y a donc aucun transfert de données hors de l'Union européenne.",
+      ],
+    },
+    {
+      heading: '6. Vos sauvegardes, votre responsabilité',
+      body: [
+        "L'application vous permet d'exporter un fichier de sauvegarde, un tableur ou un carnet PDF. Dès lors que vous enregistrez ce fichier ailleurs — Drive, iCloud, une messagerie, une carte mémoire — son contenu quitte l'appareil et relève des conditions du service que vous avez choisi. L'éditeur n'y a pas accès et n'intervient pas dans ce transfert.",
+        'Corollaire important : personne ne peut restaurer vos données à votre place. En cas de perte, de vol ou de réinitialisation du téléphone, seul un export réalisé au préalable permet de les retrouver.',
+      ],
+    },
+    {
+      heading: '7. Durée de conservation',
+      body: [
+        "Vos données sont conservées aussi longtemps que vous les gardez dans l'application. Vous pouvez supprimer chaque élément individuellement, ou tout effacer depuis les réglages. Désinstaller l'application supprime définitivement l'ensemble, photos comprises.",
+        "L'éditeur ne conserve rien, et n'a donc aucune purge à opérer.",
+      ],
+    },
+    {
+      heading: '8. Sécurité',
+      body: [
+        "Les données reposent dans l'espace de stockage privé de l'application, isolé des autres applications par le système d'exploitation et protégé par le verrouillage de votre téléphone. La sauvegarde automatique d'Android est désactivée pour éviter toute remontée involontaire.",
+        "L'application ne chiffre pas séparément son contenu : sur un appareil déverrouillé et non protégé, le carnet est accessible comme n'importe quelle autre application. Verrouillez votre téléphone.",
+      ],
+    },
+    {
+      heading: '9. Vos droits',
+      body: [
+        "Vous disposez des droits d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité prévus par le RGPD. Leur exercice est ici direct et immédiat : vos données étant sur votre appareil, vous y accédez et les rectifiez dans l'application, vous les effacez depuis les réglages, et vous les emportez grâce à l'export.",
+        `Aucune demande adressée à l'éditeur ne peut porter sur le contenu de votre carnet, dont il ne détient aucune copie. Pour toute autre question : ${IDENTITY.email}. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr).`,
+      ],
+    },
+    {
+      heading: '10. Mineurs',
+      body: [
+        "L'application n'est pas destinée aux enfants et ne leur demande aucune information. Elle ne collecte aucune donnée relative à l'âge de ses utilisateurs.",
+      ],
+    },
+    {
+      heading: '11. Modification',
+      body: [
+        "Cette politique peut évoluer avec l'application. La date de dernière mise à jour figure en tête de ce document.",
+      ],
+    },
+  ],
+};
+
+const suiviAutoTerms: LegalDocument = {
+  app: 'Suivi Auto · Moto · Vélo',
+  title: "Conditions générales d'utilisation",
+  updated: UPDATED_SUIVI,
+  sections: [
+    {
+      heading: '1. Objet',
+      body: [
+        "Les présentes conditions régissent l'utilisation de l'application mobile Suivi Auto · Moto · Vélo, destinée au suivi de l'entretien, des dépenses et des échéances de véhicules personnels. L'utilisation de l'application vaut acceptation de ces conditions.",
+      ],
+    },
+    {
+      heading: "2. Portée de l'outil",
+      body: [
+        "L'application enregistre et restitue ce que vous y saisissez. Elle ne prescrit aucune opération d'entretien, n'établit aucun diagnostic et ne remplace ni le carnet du constructeur, ni l'avis d'un professionnel, ni les obligations légales attachées à votre véhicule.",
+        "Les rappels reposent exclusivement sur les règles que vous définissez et sur les kilométrages que vous saisissez : leur pertinence dépend de l'exactitude de vos saisies.",
+      ],
+    },
+    {
+      heading: '3. Fonctionnement local et sauvegarde',
+      body: [
+        "L'application fonctionne sans compte et sans serveur. Vos données sont enregistrées sur votre appareil, et sur votre appareil seulement.",
+        "Il vous appartient d'exporter régulièrement une sauvegarde. En cas de perte, de vol, de panne, de réinitialisation ou de désinstallation, les données non exportées sont définitivement perdues, et l'éditeur, qui n'en détient aucune copie, ne peut pas les restaurer.",
+      ],
+    },
+    {
+      heading: '4. Contenus que vous saisissez',
+      body: [
+        "Vous restez propriétaire de vos données, de vos photos et de vos documents. Vous êtes responsable de leur contenu, et notamment des documents de tiers que vous choisiriez d'y importer.",
+      ],
+    },
+    sectionAchats(
+      5,
+      "Aucun paiement n'est traité par l'application : il n'existe ni achat intégré, ni abonnement, ni publicité. L'application est diffusée gratuitement.",
+    ),
+    {
+      heading: '6. Usage autorisé',
+      body: [
+        "L'application est destinée à un usage personnel, pour le suivi de vos propres véhicules. Sont interdits la revente, la redistribution modifiée, la décompilation en dehors des cas prévus par la loi et toute utilisation contraire à la réglementation applicable.",
+      ],
+    },
+    {
+      heading: '7. Disponibilité',
+      body: [
+        "L'application est fournie « en l'état », sans garantie de fonctionnement ininterrompu ni d'absence de défaut. Fonctionnant hors ligne, elle ne dépend d'aucun service tiers ; les notifications de rappel, en revanche, dépendent du système d'exploitation, qui peut les différer ou les regrouper selon ses propres règles d'économie d'énergie.",
+      ],
+    },
+    {
+      heading: '8. Responsabilité',
+      body: [
+        "Dans la limite permise par la loi, la responsabilité de l'éditeur ne saurait être engagée à raison d'un entretien omis, d'une échéance dépassée, d'une décision prise sur la base des informations saisies, ni de la perte de données non sauvegardées.",
+      ],
+    },
+    {
+      heading: '9. Droit applicable',
+      body: [
+        `Les présentes conditions sont soumises au droit français. En cas de litige, une solution amiable sera recherchée en priorité en écrivant à ${IDENTITY.email}.`,
+      ],
+    },
+  ],
+};
+
+/* -------------------------------------------------------------------------- */
 
 export const LEGAL_DOCS = {
   'bilan-secouriste': { mentions: bilanSecouristeMentions, terms: bilanSecouristeTerms },
   'gestion-locative': { mentions: gestionLocativeMentions, terms: gestionLocativeTerms },
   'sports-controls': { mentions: sportsControlsMentions, terms: sportsControlsTerms },
+  // Seule app dont la politique de confidentialité vit ici aussi : celles des autres
+  // sont des pages autonomes, dont les URL sont déjà déclarées dans les fiches des stores.
+  'suivi-auto-moto-velo': {
+    mentions: suiviAutoMentions,
+    privacy: suiviAutoPrivacy,
+    terms: suiviAutoTerms,
+  },
 } as const;
 
 /**
@@ -465,6 +679,11 @@ export const LEGAL_LINKS: Record<
     mentions: '/sports-controls/mentions-legales',
     privacy: '/privacy-policy',
     terms: '/sports-controls/cgu',
+  },
+  'suivi-auto-moto-velo': {
+    mentions: '/suivi-auto-moto-velo/mentions-legales',
+    privacy: '/suivi-auto-moto-velo/politique-confidentialite',
+    terms: '/suivi-auto-moto-velo/cgu',
   },
   itero: {
     mentions: '/itero/mentions-legales',

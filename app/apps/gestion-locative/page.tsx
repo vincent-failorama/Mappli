@@ -106,7 +106,10 @@ export default function GestionLocativePage() {
         >
           ← Retour aux apps
         </Link>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Une seule colonne tant qu'il n'y a pas de capture : un cadre qui annonce une
+            image absente coûte plus qu'il ne rapporte. Rétablir la grille à deux colonnes
+            le jour où de vraies captures existent. */}
+        <div className="max-w-3xl">
           <div>
             <div className="text-6xl mb-6">
               <FaKey className="inline-block" />
@@ -149,14 +152,6 @@ export default function GestionLocativePage() {
               </a>
             </div>
           </div>
-
-          {/* Placeholder screenshot */}
-          <div className="bg-gradient-to-br from-brand-500/10 to-brand-600/10 backdrop-blur-md rounded-2xl aspect-video flex items-center justify-center border border-white/10 shadow-2xl">
-            <div className="text-center text-brand-300">
-              <div className="text-6xl mb-3">🏠</div>
-              <p className="text-sm font-medium">Screenshots à venir</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -176,23 +171,8 @@ export default function GestionLocativePage() {
         </div>
       </section>
 
-      {/* Screenshots placeholder */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <h2 className="text-3xl font-bold text-white mb-10 text-center">Captures d&apos;écran</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div
-              key={i}
-              className="bg-white/5 backdrop-blur-md rounded-xl aspect-[9/16] flex items-center justify-center text-slate-300 border border-white/10"
-            >
-              <div className="text-center">
-                <div className="text-4xl mb-2">📷</div>
-                <p className="text-xs font-medium">Screenshot {i + 1}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Section « Captures d'écran » retirée : elle n'affichait que trois cadres vides.
+          La rétablir sur le modèle de bilan-secouriste, qui a de vraies images. */}
 
       {/* Tarifs */}
       <section className="py-20 relative">

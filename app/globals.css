@@ -184,9 +184,12 @@ html {
   background-size: 64px 64px;
 }
 
-/* Gradient glow button */
+/* Gradient glow button — les deux extrémités sont assombries d'un cran (sky-700 et
+   violet-600) : le dégradé d'origine donnait 2,8:1 avec le libellé blanc, sous le
+   seuil WCAG de 4,5:1. La lueur portée garde le bleu vif d'origine, donc le bouton
+   reste lumineux sans que son texte devienne illisible. */
 .btn-primary {
-  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  background: linear-gradient(135deg, #0369a1, #7c3aed);
   box-shadow: 0 0 24px rgba(14, 165, 233, 0.4);
   transition:
     box-shadow 0.3s ease,
@@ -406,7 +409,9 @@ html {
   width: auto;
   height: auto;
   padding: 8px 20px;
-  background: #0ea5e9;
+  /* Même correction de contraste : c'est le premier élément qu'atteint un
+     utilisateur au clavier, il ne peut pas être le moins lisible de la page. */
+  background: #0369a1;
   color: white;
   font-weight: 600;
   border-radius: 8px;

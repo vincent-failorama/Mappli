@@ -1,19 +1,18 @@
 import { NextResponse } from 'next/server';
 
+import sitemap from '../../sitemap';
+
 const KEY = '2d58daaa2fbb495097e017dfe65321f0';
 const HOST = 'mappli.fr';
 const BASE_URL = `https://${HOST}`;
 
-const URLS = [
-  BASE_URL,
-  `${BASE_URL}/contact`,
-  `${BASE_URL}/apps/bilan-secouriste`,
-  `${BASE_URL}/apps/pompiers-planificateur`,
-  `${BASE_URL}/apps/signalis`,
-  `${BASE_URL}/apps/sports-controls`,
-  `${BASE_URL}/privacy-policy`,
-  `${BASE_URL}/bilan-secouriste/privacy`,
-];
+/**
+ * Les URL soumises sont celles du sitemap, et non une seconde liste tenue à la main :
+ * celle-ci avait déjà décroché — itero et gestion-locative n'y figuraient pas, et
+ * n'étaient donc jamais poussées vers Bing. Une page ajoutée au sitemap est désormais
+ * soumise automatiquement.
+ */
+const URLS = sitemap().map((entry) => entry.url);
 
 export async function POST(request: Request) {
   // Protection par token secret pour éviter les appels non autorisés
@@ -38,10 +37,7 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      return NextResponse.json(
-        { error: `IndexNow returned ${response.status}` },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: `IndexNow returned ${response.status}` }, { status: 500 });
     }
 
     return NextResponse.json({ success: true, submitted: URLS.length, urls: URLS });

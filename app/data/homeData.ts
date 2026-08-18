@@ -1,5 +1,16 @@
 // Import icons from react-icons/fa
-import { FaBuilding, FaFutbol, FaAmbulance, FaHeartbeat, FaKey, FaPlaneDeparture, FaMobileAlt, FaCloud, FaBullseye } from 'react-icons/fa';
+import {
+  FaBuilding,
+  FaFutbol,
+  FaAmbulance,
+  FaHeartbeat,
+  FaKey,
+  FaPlaneDeparture,
+  FaCar,
+  FaMobileAlt,
+  FaCloud,
+  FaBullseye,
+} from 'react-icons/fa';
 
 export const APPS = [
   {
@@ -46,6 +57,15 @@ export const APPS = [
       'Application mobile hors-ligne pour pompiers, ambulanciers et secouristes. Bilan victimes, constantes, urgences vitales (ACR, hémorragie), export PDF SAMU et bases médicales de référence.',
     platforms: ['Android', 'iOS bientôt'],
     href: '/apps/bilan-secouriste',
+  },
+  {
+    icon: FaCar, // Icône de voiture pour le carnet d'entretien
+    name: 'Suivi Auto · Moto · Vélo',
+    tagline: "Carnet d'entretien de vos véhicules",
+    description:
+      "Carnet d'entretien pour voiture, moto et vélo : entretiens, dépenses, pleins et recharges, alertes au kilométrage et à la date, documents. Tout reste sur le téléphone — aucun compte, aucun serveur.",
+    platforms: ['Android', 'iOS'],
+    href: '/apps/suivi-auto-moto-velo',
   },
   {
     icon: FaAmbulance, // Icône d'ambulance pour Planificateur de Garde

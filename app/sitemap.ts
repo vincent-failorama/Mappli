@@ -53,6 +53,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${BASE_URL}/apps/suivi-auto-moto-velo`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/privacy-policy`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
@@ -95,14 +101,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.2,
     },
     // Mentions légales + CGU des apps distribuées sur les stores (hors Signalis et
-    // Planificateur de Garde, qui n'y sont pas publiés).
+    // Planificateur de Garde, qui n'y sont pas publiés). `/mentions-legales` est celle
+    // du site lui-même : elle existe depuis l'origine mais n'était déclarée nulle part.
     ...[
+      '/mentions-legales',
       '/bilan-secouriste/mentions-legales',
       '/bilan-secouriste/cgu',
       '/gestion-locative/mentions-legales',
       '/gestion-locative/cgu',
       '/sports-controls/mentions-legales',
       '/sports-controls/cgu',
+      '/suivi-auto-moto-velo/mentions-legales',
+      '/suivi-auto-moto-velo/politique-confidentialite',
+      '/suivi-auto-moto-velo/cgu',
     ].map((path) => ({
       url: `${BASE_URL}${path}`,
       lastModified: new Date(),
