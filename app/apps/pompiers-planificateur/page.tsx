@@ -99,11 +99,25 @@ export default function PompiersPlanificateurPage() {
               ))}
             </div>
             <div className="flex gap-3 flex-wrap">
+              {/*
+                * Essai en premier, demande de demo ensuite : un chef de garde qui decouvre
+                * l'outil doit pouvoir l'ouvrir tout de suite. Sans ce lien, la page ne menait
+                * nulle part d'autre qu'a un formulaire — aucun centre ne pouvait essayer seul.
+                * L'application ne demande ni compte ni installation, et l'essai est complet.
+                */}
               <a
-                href="/contact?sujet=D%C3%A9mo+Planificateur+Pompier"
+                href="https://planning-gardes-sp.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary text-white px-6 py-3 rounded-xl font-semibold"
               >
-                Demander une démo →
+                Essayer gratuitement →
+              </a>
+              <a
+                href="/contact?sujet=D%C3%A9mo+Planificateur+Pompier"
+                className="btn-secondary inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/15 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+              >
+                Demander une démo
               </a>
               <a
                 href="/guide-planning-gardes-sp.pdf"
