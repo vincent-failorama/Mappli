@@ -129,6 +129,17 @@ export default function PompiersPlanificateurPage() {
                 Guide utilisateur (PDF)
               </a>
             </div>
+            {/*
+              * Dire ce qui suit l'essai, a l'endroit ou l'on invite a le commencer. Sans
+              * cette ligne, « Essayer gratuitement » laissait croire a un outil gratuit :
+              * un chef de garde qui saisit son personnel et deux mois de gardes avant de
+              * decouvrir qu'il faut payer aurait raison de se sentir mene en bateau.
+              */}
+            <p className="text-sm text-white/70 mt-4 max-w-2xl">
+              Essai complet de 90 jours, sans compte ni installation. Ensuite, licence
+              annuelle par centre — la consultation et vos sauvegardes restent toujours
+              accessibles.
+            </p>
           </div>
 
           {/* Hero screenshot */}
